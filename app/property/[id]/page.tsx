@@ -152,16 +152,6 @@ export default function PropertyPage() {
             <span className="mb-3 inline-block border border-white/30 px-3 py-1 text-xs tracking-[0.2em] text-white/80">
               {property.type}
             </span>
-            <div className="mb-4 flex items-center gap-4">
-              {/* Glassmorphism Location Badge */}
-              <div className="flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md">
-                <svg className="h-5 w-5 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                </svg>
-                <span className="text-sm font-light tracking-wide text-white/90">{property.location}</span>
-              </div>
-            </div>
             <h1 className="mb-4 text-4xl font-light text-white md:text-5xl lg:text-6xl">
               {property.location}
             </h1>
