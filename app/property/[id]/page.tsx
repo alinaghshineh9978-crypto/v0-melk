@@ -15,7 +15,6 @@ const properties = [
     bathrooms: "۳",
     price: "۲۲ میلیارد",
     caption: "بالاترین نقطه شهر",
-    features: ["پنجره‌های پانورامی", "باغ روی پشت‌بام", "هم‌کف باشگاه خصوصی", "پارکینگ دوبل"],
   },
   {
     id: 2,
@@ -27,7 +26,6 @@ const properties = [
     bathrooms: "۴",
     price: "۳۵ میلیارد",
     caption: "آرامش در دل طبیعت",
-    features: ["ساحل خصوصی", "باغ وسیع", "استخر داخلی", "سونا و جکوزی"],
   },
   {
     id: 3,
@@ -39,7 +37,6 @@ const properties = [
     bathrooms: "۲",
     price: "۱۵ میلیارد",
     caption: "زندگی در قلب شهر",
-    features: ["نما هنری", "آسانسور پرایوت", "فضای تراس", "سیستم هوشمند"],
   },
   {
     id: 4,
@@ -51,7 +48,6 @@ const properties = [
     bathrooms: "۴",
     price: "۲۸ میلیارد",
     caption: "سبک زندگی خاص",
-    features: ["آتلیه برای هنرمندان", "کتابخانه دو‌طبقه", "صالن سینما خصوصی", "آشپزخانه حرفه‌ای"],
   },
   {
     id: 5,
@@ -63,7 +59,6 @@ const properties = [
     bathrooms: "۵",
     price: "۴۲ میلیارد",
     caption: "رویای جزیره",
-    features: ["بیچ کلاب", "یخچال خمیازه", "سلامت اسپا", "هلی‌پد"],
   },
   {
     id: 6,
@@ -75,7 +70,6 @@ const properties = [
     bathrooms: "۲",
     price: "۱۲ میلیارد",
     caption: "ظرافت در هر جزئیات",
-    features: ["پارکت چوب راه راه", "آشپزخانه مدرن", "تراس با نما", "گاراژ خصوصی"],
   },
 ]
 
@@ -191,36 +185,6 @@ export default function PropertyPage() {
           <svg className="h-5 w-5 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
-        </div>
-      </section>
-
-      {/* Features Section - Glass Effect */}
-      <section className="px-6 py-12 sm:px-8 sm:py-16 md:px-12 md:py-20">
-        <div className="mx-auto max-w-6xl">
-          {/* Features Grid */}
-          <div className="rounded-lg border border-white/20 bg-white/10 px-6 py-10 backdrop-blur-md sm:px-8 sm:py-12 md:px-10 md:py-14">
-            <div className="mb-8 flex items-center gap-2">
-              <div className="h-px w-6 bg-accent" />
-              <h3 className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
-                مشخصات
-              </h3>
-            </div>
-            
-            {/* Features - RTL Flow */}
-            <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-5">
-              {property.features && property.features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2.5 sm:px-5 sm:py-3 md:px-6 md:py-3"
-                >
-                  <span className="text-xs font-light text-foreground sm:text-sm">
-                    {feature}
-                  </span>
-                  <div className="h-1 w-1 rounded-full bg-accent" />
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
