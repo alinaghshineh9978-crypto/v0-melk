@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 
 const properties = [
   {
@@ -80,58 +81,60 @@ export function FeaturedProperties() {
 
         <div className="space-y-0">
           {properties.map((property, index) => (
-            <article key={property.id} className="group relative cursor-pointer">
-              {/* Full-bleed cover image */}
-              <div className="relative h-[85svh] w-full overflow-hidden bg-muted">
-                <Image
-                  src={property.image}
-                  alt={`${property.type} در ${property.location}`}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-out group-active:scale-[1.02]"
-                  sizes="100vw"
-                  priority={index < 2}
-                />
-                {/* Gradient — bottom-heavy for text legibility */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <Link href={`/property/${property.id}`} key={property.id}>
+              <article className="group relative cursor-pointer">
+                {/* Full-bleed cover image */}
+                <div className="relative h-[85svh] w-full overflow-hidden bg-muted">
+                  <Image
+                    src={property.image}
+                    alt={`${property.type} در ${property.location}`}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-active:scale-[1.02]"
+                    sizes="100vw"
+                    priority={index < 2}
+                  />
+                  {/* Gradient — bottom-heavy for text legibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                {/* Issue number — ghost watermark top-right */}
-                <div className="absolute right-5 top-6">
-                  <span className="font-serif text-5xl font-light leading-none text-white/20">
-                    {property.issue}
-                  </span>
-                </div>
-
-                {/* Type tag — top-left */}
-                <div className="absolute left-5 top-6 border border-white/30 px-2.5 py-1">
-                  <span className="text-[10px] tracking-[0.25em] text-white/80">
-                    {property.type}
-                  </span>
-                </div>
-
-                {/* Editorial text block — bottom */}
-                <div className="absolute bottom-0 right-0 w-full px-5 pb-8">
-                  <p className="mb-3 text-xs tracking-[0.2em] text-white/50">
-                    {property.caption}
-                  </p>
-                  <h3 className="mb-4 text-3xl font-light leading-tight text-white">
-                    {property.location}
-                  </h3>
-                  <div className="flex items-center gap-4 border-t border-white/20 pt-4">
-                    <span className="text-sm font-light text-white/60">
-                      {property.area} متر مربع
-                    </span>
-                    <span className="h-px flex-1 bg-white/10" />
-                    <span className="text-xs tracking-[0.2em] text-accent">
-                      مشاهده
+                  {/* Issue number — ghost watermark top-right */}
+                  <div className="absolute right-5 top-6">
+                    <span className="font-serif text-5xl font-light leading-none text-white/20">
+                      {property.issue}
                     </span>
                   </div>
-                </div>
-              </div>
 
-              {index < properties.length - 1 && (
-                <div className="h-px w-full bg-border" />
-              )}
-            </article>
+                  {/* Type tag — top-left */}
+                  <div className="absolute left-5 top-6 border border-white/30 px-2.5 py-1">
+                    <span className="text-[10px] tracking-[0.25em] text-white/80">
+                      {property.type}
+                    </span>
+                  </div>
+
+                  {/* Editorial text block — bottom */}
+                  <div className="absolute bottom-0 right-0 w-full px-5 pb-8">
+                    <p className="mb-3 text-xs tracking-[0.2em] text-white/50">
+                      {property.caption}
+                    </p>
+                    <h3 className="mb-4 text-3xl font-light leading-tight text-white">
+                      {property.location}
+                    </h3>
+                    <div className="flex items-center gap-4 border-t border-white/20 pt-4">
+                      <span className="text-sm font-light text-white/60">
+                        {property.area} متر مربع
+                      </span>
+                      <span className="h-px flex-1 bg-white/10" />
+                      <span className="text-xs tracking-[0.2em] text-accent">
+                        مشاهده
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {index < properties.length - 1 && (
+                  <div className="h-px w-full bg-border" />
+                )}
+              </article>
+            </Link>
           ))}
         </div>
 
@@ -166,53 +169,54 @@ export function FeaturedProperties() {
           {/* Grid */}
           <div className="grid grid-cols-2 gap-6 lg:grid-cols-3 lg:gap-8">
             {properties.map((property) => (
-              <article
-                key={property.id}
-                className="group relative cursor-pointer overflow-hidden"
-                onMouseEnter={() => setHoveredId(property.id)}
-                onMouseLeave={() => setHoveredId(null)}
-              >
-                <div className="relative aspect-[4/5] overflow-hidden bg-muted">
-                  <Image
-                    src={property.image}
-                    alt={`${property.type} در ${property.location}`}
-                    fill
-                    className={`object-cover transition-transform duration-700 ease-out ${
-                      hoveredId === property.id ? "scale-105" : "scale-100"
-                    }`}
-                    sizes="(max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div
-                    className={`absolute inset-0 transition-all duration-500 ${
-                      hoveredId === property.id ? "bg-foreground/40" : "bg-foreground/0"
-                    }`}
-                  />
-                </div>
+              <Link href={`/property/${property.id}`} key={property.id}>
+                <article
+                  className="group relative cursor-pointer overflow-hidden"
+                  onMouseEnter={() => setHoveredId(property.id)}
+                  onMouseLeave={() => setHoveredId(null)}
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden bg-muted">
+                    <Image
+                      src={property.image}
+                      alt={`${property.type} در ${property.location}`}
+                      fill
+                      className={`object-cover transition-transform duration-700 ease-out ${
+                        hoveredId === property.id ? "scale-105" : "scale-100"
+                      }`}
+                      sizes="(max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div
+                      className={`absolute inset-0 transition-all duration-500 ${
+                        hoveredId === property.id ? "bg-foreground/40" : "bg-foreground/0"
+                      }`}
+                    />
+                  </div>
 
-                <div className="mt-4 space-y-1">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs tracking-[0.15em] text-muted-foreground">
-                      {property.type}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {property.area} متر
+                  <div className="mt-4 space-y-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs tracking-[0.15em] text-muted-foreground">
+                        {property.type}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        {property.area} متر
+                      </span>
+                    </div>
+                    <h3 className="text-sm font-medium text-foreground">
+                      {property.location}
+                    </h3>
+                  </div>
+
+                  <div
+                    className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${
+                      hoveredId === property.id ? "opacity-100" : "pointer-events-none opacity-0"
+                    }`}
+                  >
+                    <span className="border border-white/80 bg-transparent px-6 py-2 text-xs tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-foreground">
+                      مشاهده جزئیات
                     </span>
                   </div>
-                  <h3 className="text-sm font-medium text-foreground">
-                    {property.location}
-                  </h3>
-                </div>
-
-                <div
-                  className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${
-                    hoveredId === property.id ? "opacity-100" : "pointer-events-none opacity-0"
-                  }`}
-                >
-                  <span className="border border-white/80 bg-transparent px-6 py-2 text-xs tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-foreground">
-                    مشاهده جزئیات
-                  </span>
-                </div>
-              </article>
+                </article>
+              </Link>
             ))}
           </div>
 
