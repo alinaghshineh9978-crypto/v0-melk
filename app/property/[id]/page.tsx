@@ -267,28 +267,19 @@ export default function PropertyPage() {
               />
             </div>
 
-            {/* Date & Time */}
-            <div className="grid grid-cols-2 gap-4 sm:gap-5">
-              <div>
-                <label htmlFor="date" className="text-xs text-muted-foreground">
-                  تاریخ بازدید
-                </label>
-                <input
-                  type="date"
-                  id="date"
-                  className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none sm:py-4"
-                />
-              </div>
-              <div>
-                <label htmlFor="time" className="text-xs text-muted-foreground">
-                  ساعت بازدید
-                </label>
-                <input
-                  type="time"
-                  id="time"
-                  className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none sm:py-4"
-                />
-              </div>
+            {/* Date Input - Day/Month/Weekday format */}
+            <div>
+              <label htmlFor="date" className="text-xs text-muted-foreground">
+                تاریخ بازدید
+              </label>
+              <input
+                type="date"
+                id="date"
+                className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none sm:py-4"
+              />
+              <p className="mt-2 text-xs text-muted-foreground">
+                روز ماه هفته: مثلاً ۲۵ مهر شنبه
+              </p>
             </div>
 
             {/* Message */}
