@@ -15,7 +15,6 @@ const properties = [
     bathrooms: "۳",
     price: "۲۲ میلیارد",
     caption: "بالاترین نقطه شهر",
-    features: ["پنجره‌های پانورامی", "باغ روی پشت‌بام", "هم‌کف باشگاه خصوصی", "پارکینگ دوبل"],
   },
   {
     id: 2,
@@ -27,7 +26,6 @@ const properties = [
     bathrooms: "۴",
     price: "۳۵ میلیارد",
     caption: "آرامش در دل طبیعت",
-    features: ["ساحل خصوصی", "باغ وسیع", "استخر داخلی", "سونا و جکوزی"],
   },
   {
     id: 3,
@@ -39,7 +37,6 @@ const properties = [
     bathrooms: "۲",
     price: "۱۵ میلیارد",
     caption: "زندگی در قلب شهر",
-    features: ["نما هنری", "آسانسور پرایوت", "فضای تراس", "سیستم هوشمند"],
   },
   {
     id: 4,
@@ -51,7 +48,6 @@ const properties = [
     bathrooms: "۴",
     price: "۲۸ میلیارد",
     caption: "سبک زندگی خاص",
-    features: ["آتلیه برای هنرمندان", "کتابخانه دو‌طبقه", "صالن سینما خصوصی", "آشپزخانه حرفه‌ای"],
   },
   {
     id: 5,
@@ -63,7 +59,6 @@ const properties = [
     bathrooms: "۵",
     price: "۴۲ میلیارد",
     caption: "رویای جزیره",
-    features: ["بیچ کلاب", "یخچال خمیازه", "سلامت اسپا", "هلی‌پد"],
   },
   {
     id: 6,
@@ -75,7 +70,6 @@ const properties = [
     bathrooms: "۲",
     price: "۱۲ میلیارد",
     caption: "ظرافت در هر جزئیات",
-    features: ["پارکت چوب راه راه", "آشپزخانه مدرن", "تراس با نما", "گاراژ خصوصی"],
   },
 ]
 
@@ -194,36 +188,6 @@ export default function PropertyPage() {
         </div>
       </section>
 
-      {/* Features Section - Glass Effect */}
-      <section className="px-6 py-12 sm:px-8 sm:py-16 md:px-12 md:py-20">
-        <div className="mx-auto max-w-6xl">
-          {/* Features Grid */}
-          <div className="rounded-lg border border-white/20 bg-white/10 px-6 py-10 backdrop-blur-md sm:px-8 sm:py-12 md:px-10 md:py-14">
-            <div className="mb-8 flex items-center gap-2">
-              <div className="h-px w-6 bg-accent" />
-              <h3 className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
-                مشخصات
-              </h3>
-            </div>
-            
-            {/* Features - RTL Flow */}
-            <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-5">
-              {property.features && property.features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2.5 sm:px-5 sm:py-3 md:px-6 md:py-3"
-                >
-                  <span className="text-xs font-light text-foreground sm:text-sm">
-                    {feature}
-                  </span>
-                  <div className="h-1 w-1 rounded-full bg-accent" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Schedule Visit Section */}
       <section className="px-6 py-16 sm:px-8 sm:py-20 md:px-12 md:py-24">
         <div className="mx-auto max-w-2xl">
@@ -267,19 +231,28 @@ export default function PropertyPage() {
               />
             </div>
 
-            {/* Date Input - Day/Month/Weekday format */}
-            <div>
-              <label htmlFor="date" className="text-xs text-muted-foreground">
-                تاریخ بازدید
-              </label>
-              <input
-                type="date"
-                id="date"
-                className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none sm:py-4"
-              />
-              <p className="mt-2 text-xs text-muted-foreground">
-                روز ماه هفته: مثلاً ۲۵ مهر شنبه
-              </p>
+            {/* Date & Time */}
+            <div className="grid grid-cols-2 gap-4 sm:gap-5">
+              <div>
+                <label htmlFor="date" className="text-xs text-muted-foreground">
+                  تاریخ بازدید
+                </label>
+                <input
+                  type="date"
+                  id="date"
+                  className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none sm:py-4"
+                />
+              </div>
+              <div>
+                <label htmlFor="time" className="text-xs text-muted-foreground">
+                  ساعت بازدید
+                </label>
+                <input
+                  type="time"
+                  id="time"
+                  className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none sm:py-4"
+                />
+              </div>
             </div>
 
             {/* Message */}
@@ -306,7 +279,7 @@ export default function PropertyPage() {
 
           {/* Info Text */}
           <p className="mt-8 text-center text-xs text-muted-foreground sm:text-sm">
-            تا لحظاتی دیگر با شما تماس میگیریم
+            ما تا ۲ ساعت بعد تماس خواهیم گرفت
           </p>
         </div>
       </section>
