@@ -267,19 +267,28 @@ export default function PropertyPage() {
               />
             </div>
 
-            {/* Date Input - Day/Month/Weekday format */}
-            <div>
-              <label htmlFor="date" className="text-xs text-muted-foreground">
-                تاریخ بازدید
-              </label>
-              <input
-                type="date"
-                id="date"
-                className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none sm:py-4"
-              />
-              <p className="mt-2 text-xs text-muted-foreground">
-                روز ماه هفته: مثلاً ۲۵ مهر شنبه
-              </p>
+            {/* Date & Time */}
+            <div className="grid grid-cols-2 gap-4 sm:gap-5">
+              <div>
+                <label htmlFor="date" className="text-xs text-muted-foreground">
+                  تاریخ بازدید
+                </label>
+                <input
+                  type="date"
+                  id="date"
+                  className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none sm:py-4"
+                />
+              </div>
+              <div>
+                <label htmlFor="time" className="text-xs text-muted-foreground">
+                  ساعت بازدید
+                </label>
+                <input
+                  type="time"
+                  id="time"
+                  className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none sm:py-4"
+                />
+              </div>
             </div>
 
             {/* Message */}
@@ -306,7 +315,7 @@ export default function PropertyPage() {
 
           {/* Info Text */}
           <p className="mt-8 text-center text-xs text-muted-foreground sm:text-sm">
-            تا لحظاتی دیگر با شما تماس میگیریم
+            ما تا ۲ ساعت بعد تماس خواهیم گرفت
           </p>
         </div>
       </section>
