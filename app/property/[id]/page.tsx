@@ -13,6 +13,7 @@ const properties = [
     area: "۴۵۰",
     bedrooms: "۴",
     bathrooms: "۳",
+    price: "۲۲ میلیارد",
     caption: "بالاترین نقطه شهر",
   },
   {
@@ -23,6 +24,7 @@ const properties = [
     area: "۱۲۰۰",
     bedrooms: "۵",
     bathrooms: "۴",
+    price: "۳۵ میلیارد",
     caption: "آرامش در دل طبیعت",
   },
   {
@@ -33,6 +35,7 @@ const properties = [
     area: "۳۲۰",
     bedrooms: "۳",
     bathrooms: "۲",
+    price: "۱۵ میلیارد",
     caption: "زندگی در قلب شهر",
   },
   {
@@ -43,6 +46,7 @@ const properties = [
     area: "۵۸۰",
     bedrooms: "۵",
     bathrooms: "۴",
+    price: "۲۸ میلیارد",
     caption: "سبک زندگی خاص",
   },
   {
@@ -53,6 +57,7 @@ const properties = [
     area: "۸۵۰",
     bedrooms: "۶",
     bathrooms: "۵",
+    price: "۴۲ میلیارد",
     caption: "رویای جزیره",
   },
   {
@@ -63,6 +68,7 @@ const properties = [
     area: "۲۸۰",
     bedrooms: "۳",
     bathrooms: "۲",
+    price: "۱۲ میلیارد",
     caption: "ظرافت در هر جزئیات",
   },
 ]
@@ -125,40 +131,48 @@ export default function PropertyPage() {
         <div className="absolute bottom-0 left-0 right-0 px-6 pb-32 sm:px-8 sm:pb-40 md:px-12 md:pb-48">
           <div className="mx-auto max-w-2xl">
             {/* Title */}
-            <h1 className="mb-3 text-3xl font-light text-white sm:text-4xl md:mb-4 md:text-5xl lg:text-6xl">
+            <h1 className="mb-2 text-3xl font-light text-white sm:text-4xl md:mb-3 md:text-5xl lg:text-6xl">
               {property.location}
             </h1>
 
-            {/* Subtitle */}
-            <p className="mb-6 text-sm text-white/70 sm:mb-8 sm:text-base md:mb-10">
+            {/* Address - Smaller */}
+            <p className="mb-4 text-xs text-white/60 sm:mb-5 sm:text-sm md:mb-6">
               {property.caption}
             </p>
+
+            {/* Price */}
+            <div className="mb-6 sm:mb-8 md:mb-10">
+              <p className="text-sm text-white/70 sm:text-base">قیمت</p>
+              <p className="text-2xl font-light text-white sm:text-3xl md:text-4xl">
+                {property.price}
+              </p>
+            </div>
 
             {/* Stats Row */}
             <div className="flex items-center gap-6 sm:gap-8">
               <div className="flex flex-col">
-                <span className="text-xl font-light text-white sm:text-2xl">
+                <span className="text-lg font-light text-white sm:text-xl md:text-2xl">
                   {property.bedrooms}
                 </span>
-                <span className="text-[10px] tracking-[0.2em] text-white/60 sm:text-xs">
+                <span className="text-[9px] tracking-[0.2em] text-white/60 sm:text-[10px]">
                   اتاق خواب
                 </span>
               </div>
               <div className="h-8 w-px bg-white/20" />
               <div className="flex flex-col">
-                <span className="text-xl font-light text-white sm:text-2xl">
+                <span className="text-lg font-light text-white sm:text-xl md:text-2xl">
                   {property.bathrooms}
                 </span>
-                <span className="text-[10px] tracking-[0.2em] text-white/60 sm:text-xs">
+                <span className="text-[9px] tracking-[0.2em] text-white/60 sm:text-[10px]">
                   سرویس
                 </span>
               </div>
               <div className="h-8 w-px bg-white/20" />
               <div className="flex flex-col">
-                <span className="text-xl font-light text-white sm:text-2xl">
+                <span className="text-lg font-light text-white sm:text-xl md:text-2xl">
                   {property.area}
                 </span>
-                <span className="text-[10px] tracking-[0.2em] text-white/60 sm:text-xs">
+                <span className="text-[9px] tracking-[0.2em] text-white/60 sm:text-[10px]">
                   متر مربع
                 </span>
               </div>
