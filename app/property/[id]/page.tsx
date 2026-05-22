@@ -306,7 +306,7 @@ export default function PropertyPage() {
 
           {/* Info Text */}
           <p className="mt-8 text-center text-xs text-muted-foreground sm:text-sm">
-            ما تا ۲ ساعت بعد تماس خواهیم گرفت
+            تا لحظاتی دیگر با شما تماس میگیریم
           </p>
         </div>
       </section>
