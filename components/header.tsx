@@ -261,8 +261,26 @@ export function Header() {
             </div>
           </div>
 
+          {/* Auth buttons for mobile — top of menu */}
+          <div className="flex flex-col items-center gap-3 mb-6">
+            <a
+              href="/login"
+              onClick={() => setMenuOpen(false)}
+              className="text-sm font-light text-foreground transition-colors hover:text-accent active:text-accent"
+            >
+              ورود
+            </a>
+            <a
+              href="/signup"
+              onClick={() => setMenuOpen(false)}
+              className="px-6 py-2 border border-accent bg-accent text-white text-xs tracking-[0.15em] transition-all hover:bg-accent/90"
+            >
+              ثبت‌نام
+            </a>
+          </div>
+
           {/* Thin divider */}
-          <div className="h-px w-16 bg-border" />
+          <div className="h-px w-16 bg-border mb-6" />
 
           <a
             href="#about"
@@ -286,24 +304,8 @@ export function Header() {
             تماس
           </a>
 
-          {/* Auth buttons for mobile */}
+          {/* Thin divider */}
           <div className="h-px w-16 bg-border mt-4" />
-          <div className="flex flex-col items-center gap-4 mt-4">
-            <a
-              href="/login"
-              onClick={() => setMenuOpen(false)}
-              className="text-xl font-light text-foreground transition-colors hover:text-accent active:text-accent"
-            >
-              ورود
-            </a>
-            <a
-              href="/signup"
-              onClick={() => setMenuOpen(false)}
-              className="px-8 py-3 border border-accent bg-accent text-white text-sm tracking-[0.15em] transition-all hover:bg-accent/90"
-            >
-              ثبت‌نام
-            </a>
-          </div>
         </nav>
       </div>
     </>
