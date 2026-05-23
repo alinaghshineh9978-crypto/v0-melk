@@ -115,9 +115,12 @@ export function FeaturedProperties() {
                     <p className="mb-3 text-xs tracking-[0.2em] text-white/50">
                       {property.caption}
                     </p>
-                    <h3 className="mb-4 text-3xl font-light leading-tight text-white">
-                      {property.location}
-                    </h3>
+                    <div className="mb-4 flex items-center justify-between">
+                      <h3 className="text-3xl font-light leading-tight text-white">
+                        {property.location}
+                      </h3>
+                      <span className="text-2xl">📍</span>
+                    </div>
                     <div className="flex items-center gap-4 border-t border-white/20 pt-4">
                       <span className="text-sm font-light text-white/60">
                         {property.area} متر مربع
@@ -201,9 +204,12 @@ export function FeaturedProperties() {
                         {property.area} متر
                       </span>
                     </div>
-                    <h3 className="text-sm font-medium text-foreground">
-                      {property.location}
-                    </h3>
+                    <div className="flex items-center justify-between pt-1">
+                      <h3 className="text-sm font-medium text-foreground">
+                        {property.location}
+                      </h3>
+                      <span className="text-lg">📍</span>
+                    </div>
                   </div>
 
                   <div
