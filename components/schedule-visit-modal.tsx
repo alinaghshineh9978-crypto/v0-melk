@@ -50,20 +50,23 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
         }}
       >
         {/* Gold accent line - top */}
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
         
-        {/* Inner frame border */}
-        <div className="absolute inset-3 border border-accent/15 pointer-events-none" />
+        {/* Corner accents - Top Left */}
+        <div className="absolute left-6 top-6 h-3 w-px bg-accent/50" />
+        <div className="absolute left-6 top-6 h-px w-3 bg-accent/50" />
         
-        {/* Corner accents */}
-        <div className="absolute left-3 top-3 h-4 w-px bg-accent/40" />
-        <div className="absolute left-3 top-3 h-px w-4 bg-accent/40" />
-        <div className="absolute right-3 top-3 h-4 w-px bg-accent/40" />
-        <div className="absolute right-3 top-3 h-px w-4 bg-accent/40" />
-        <div className="absolute left-3 bottom-3 h-4 w-px bg-accent/40" />
-        <div className="absolute left-3 bottom-3 h-px w-4 bg-accent/40" />
-        <div className="absolute right-3 bottom-3 h-4 w-px bg-accent/40" />
-        <div className="absolute right-3 bottom-3 h-px w-4 bg-accent/40" />
+        {/* Corner accents - Top Right */}
+        <div className="absolute right-6 top-6 h-3 w-px bg-accent/50" />
+        <div className="absolute right-6 top-6 h-px w-3 bg-accent/50" />
+        
+        {/* Corner accents - Bottom Left */}
+        <div className="absolute left-6 bottom-6 h-3 w-px bg-accent/50" />
+        <div className="absolute left-6 bottom-6 h-px w-3 bg-accent/50" />
+        
+        {/* Corner accents - Bottom Right */}
+        <div className="absolute right-6 bottom-6 h-3 w-px bg-accent/50" />
+        <div className="absolute right-6 bottom-6 h-px w-3 bg-accent/50" />
 
         {/* Close Button */}
         <button
