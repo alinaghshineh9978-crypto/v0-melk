@@ -59,6 +59,8 @@ export function FeaturedProperties() {
   const [hoveredId, setHoveredId] = useState<number | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const touchStartRef = useRef(0)
+  const scrollTimeoutRef = useRef<NodeJS.Timeout>()
 
   const scrollToIndex = (index: number) => {
     if (index < 0 || index >= properties.length) return
@@ -74,6 +76,33 @@ export function FeaturedProperties() {
 
   const nextSlide = () => scrollToIndex(currentIndex + 1)
   const prevSlide = () => scrollToIndex(currentIndex - 1)
+
+  // Handle touch/swipe - snap to next card on minimal swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartRef.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!scrollRef.current) return
+    const touchEnd = e.changedTouches[0].clientX
+    const diff = touchStartRef.current - touchEnd
+    const threshold = 30 // Minimal swipe distance to trigger next card
+
+    // Clear any pending timeout
+    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
+
+    // Swipe left = next card (RTL)
+    if (diff > threshold) {
+      nextSlide()
+    }
+    // Swipe right = prev card (RTL)
+    else if (diff < -threshold) {
+      prevSlide()
+    } else {
+      // Snap to current index if swipe is too small
+      scrollToIndex(currentIndex)
+    }
+  }
 
   return (
     <section id="properties" className="relative bg-background overflow-hidden">
@@ -108,10 +137,11 @@ export function FeaturedProperties() {
           <div 
             ref={scrollRef}
             className="overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
             onScroll={(e) => {
-              const container = e.currentTarget
-              const index = Math.round(container.scrollLeft / container.offsetWidth)
-              setCurrentIndex(index)
+              // Prevent scroll event from interfering with touch-based snapping
+              if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
             }}
           >
             <div className="flex">
