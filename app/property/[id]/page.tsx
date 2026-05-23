@@ -143,35 +143,37 @@ export default function PropertyPage() {
             {/* Price + Specs Grid */}
             <div className="space-y-6 sm:space-y-8 md:space-y-10">
               {/* Specs Grid - 3 Columns with Glass Morphism */}
-              <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-5 rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur-md sm:p-8 md:p-10">
-                {/* Bedrooms */}
-                <div className="flex flex-col items-center text-center">
-                  <span className="text-[9px] tracking-[0.2em] text-white/70 sm:text-[10px]">
-                    اتاق خواب
-                  </span>
-                  <span className="mt-3 text-2xl font-light text-white sm:mt-4 sm:text-3xl md:text-4xl">
-                    {property.bedrooms}
-                  </span>
-                </div>
+              <div className="rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur-md sm:p-8 md:p-10">
+                <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-5">
+                  {/* Bedrooms */}
+                  <div className="flex flex-col items-center border-r border-white/10 pr-3 text-center sm:pr-4 md:pr-5">
+                    <span className="text-[9px] tracking-[0.2em] text-white/70 sm:text-[10px]">
+                      اتاق خواب
+                    </span>
+                    <span className="mt-3 text-2xl font-light text-white sm:mt-4 sm:text-3xl md:text-4xl">
+                      {property.bedrooms}
+                    </span>
+                  </div>
 
-                {/* Price */}
-                <div className="flex flex-col items-center border-l border-r border-white/20 px-3 text-center sm:px-4 md:px-5">
-                  <span className="text-[9px] tracking-[0.2em] text-white/70 sm:text-[10px]">
-                    قیمت
-                  </span>
-                  <span className="mt-3 text-sm font-light text-white sm:mt-4 sm:text-base md:text-lg">
-                    {property.price}
-                  </span>
-                </div>
+                  {/* Price */}
+                  <div className="flex flex-col items-center border-l border-r border-white/10 px-3 text-center sm:px-4 md:px-5">
+                    <span className="text-[9px] tracking-[0.2em] text-white/70 sm:text-[10px]">
+                      قیمت
+                    </span>
+                    <span className="mt-3 text-sm font-light text-white sm:mt-4 sm:text-base md:text-lg">
+                      {property.price}
+                    </span>
+                  </div>
 
-                {/* Area */}
-                <div className="flex flex-col items-center text-center">
-                  <span className="text-[9px] tracking-[0.2em] text-white/70 sm:text-[10px]">
-                    متر مربع
-                  </span>
-                  <span className="mt-3 text-2xl font-light text-white sm:mt-4 sm:text-3xl md:text-4xl">
-                    {property.area}
-                  </span>
+                  {/* Area */}
+                  <div className="flex flex-col items-center border-l border-white/10 pl-3 text-center sm:pl-4 md:pl-5">
+                    <span className="text-[9px] tracking-[0.2em] text-white/70 sm:text-[10px]">
+                      متر مربع
+                    </span>
+                    <span className="mt-3 text-2xl font-light text-white sm:mt-4 sm:text-3xl md:text-4xl">
+                      {property.area}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
