@@ -142,17 +142,7 @@ export default function PropertyPage() {
 
             {/* Price + Specs Grid */}
             <div className="space-y-6 sm:space-y-8 md:space-y-10">
-              {/* Price Row */}
-              <div className="flex items-end justify-between border-b border-white/20 pb-4 sm:pb-5 md:pb-6">
-                <div>
-                  <p className="mb-2 text-xs text-white/60 sm:text-sm">قیمت</p>
-                  <p className="text-2xl font-light text-white sm:text-3xl md:text-4xl lg:text-5xl">
-                    {property.price}
-                  </p>
-                </div>
-              </div>
-
-              {/* Specs Grid - Right to Left */}
+              {/* Specs Grid - 3 Columns: Bedrooms | Price | Area */}
               <div className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                 {/* Bedrooms */}
                 <div className="flex flex-col items-start text-right">
@@ -164,13 +154,13 @@ export default function PropertyPage() {
                   </span>
                 </div>
 
-                {/* Bathrooms */}
+                {/* Price */}
                 <div className="flex flex-col items-center text-center">
                   <span className="text-[9px] tracking-[0.2em] text-white/60 sm:text-[10px]">
-                    سرویس
+                    قیمت
                   </span>
-                  <span className="mt-1 text-lg font-light text-white sm:mt-2 sm:text-xl md:text-2xl lg:text-3xl">
-                    {property.bathrooms}
+                  <span className="mt-1 text-xs font-light text-white sm:mt-2 sm:text-sm md:text-base lg:text-lg">
+                    {property.price}
                   </span>
                 </div>
 
