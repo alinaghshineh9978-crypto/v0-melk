@@ -158,23 +158,23 @@ export function FeaturedProperties() {
         <div className="px-6 py-24 lg:py-32 xl:py-40">
           <div className="mx-auto max-w-full">
             {/* Section Header */}
-            <div className="mb-16 text-center md:mb-24">
+            <div className="mb-20 text-center md:mb-28">
               <span className="mb-4 inline-block text-xs tracking-[0.2em] text-muted-foreground">
                 مجموعه منتخب
               </span>
               <h2 className="text-3xl font-light text-foreground md:text-4xl lg:text-5xl">
                 املاک ویژه
               </h2>
-              <div className="mx-auto mt-6 h-px w-16 bg-accent" />
+              <div className="mx-auto mt-8 h-px w-16 bg-accent" />
             </div>
 
             {/* Horizontal Scroll Container */}
-            <div className="overflow-x-auto pb-6">
-              <div className="flex gap-6 lg:gap-10">
-                {properties.map((property) => (
+            <div className="overflow-x-auto pb-8">
+              <div className="flex gap-8 lg:gap-12">
+                {properties.map((property, index) => (
                   <Link href={`/property/${property.id}`} key={property.id}>
                     <article
-                      className="group relative cursor-pointer flex-shrink-0 w-96 overflow-hidden"
+                      className="group relative cursor-pointer flex-shrink-0 w-96 overflow-hidden border border-accent/20 p-3 transition-all duration-500 hover:border-accent/60 hover:bg-accent/5"
                       onMouseEnter={() => setHoveredId(property.id)}
                       onMouseLeave={() => setHoveredId(null)}
                     >
@@ -195,7 +195,7 @@ export function FeaturedProperties() {
                         />
                       </div>
 
-                      <div className="mt-4 space-y-1">
+                      <div className="mt-5 space-y-3">
                         <div className="flex items-center justify-between">
                           <span className="text-xs text-muted-foreground">
                             {property.area} متر
@@ -204,8 +204,8 @@ export function FeaturedProperties() {
                             {property.type}
                           </span>
                         </div>
-                        <div className="flex items-center gap-2 pt-1">
-                          <svg className="h-4 w-4 flex-shrink-0 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <div className="flex items-center gap-2 border-t border-accent/10 pt-3">
+                          <svg className="h-4 w-4 flex-shrink-0 text-accent/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                           </svg>
