@@ -191,94 +191,96 @@ export default function PropertyPage() {
       <section className="px-6 py-16 sm:px-8 sm:py-20 md:px-12 md:py-24">
         <div className="mx-auto max-w-2xl">
           {/* Section Header */}
-          <div className="mb-10 text-center md:mb-14">
-            <span className="mb-4 inline-block text-xs tracking-[0.2em] text-muted-foreground">
+          <div className="mb-12 text-center md:mb-16">
+            <span className="mb-3 inline-block text-xs tracking-[0.2em] text-accent">
               بازدید
             </span>
-            <h2 className="text-2xl font-light text-foreground sm:text-3xl md:text-4xl">
+            <h2 className="text-3xl font-light text-foreground sm:text-4xl md:text-5xl">
               هماهنگی جلسه بازدید
             </h2>
-            <div className="mx-auto mt-6 h-px w-12 bg-accent" />
+            <div className="mx-auto mt-8 h-px w-16 bg-accent" />
           </div>
 
           {/* Schedule Form */}
-          <form className="space-y-5 sm:space-y-6">
+          <form className="space-y-6 sm:space-y-8">
             {/* Name Input */}
             <div>
-              <label htmlFor="name" className="text-xs text-muted-foreground">
+              <label htmlFor="name" className="block text-xs tracking-[0.1em] text-muted-foreground mb-3">
                 نام و نام خانوادگی
               </label>
               <input
                 type="text"
                 id="name"
-                placeholder="نام شما"
-                className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground placeholder-muted-foreground transition-colors focus:border-accent focus:outline-none sm:py-4"
+                placeholder="نام شما را وارد کنید"
+                className="w-full border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
               />
             </div>
 
             {/* Phone Input */}
             <div>
-              <label htmlFor="phone" className="text-xs text-muted-foreground">
+              <label htmlFor="phone" className="block text-xs tracking-[0.1em] text-muted-foreground mb-3">
                 شماره تماس
               </label>
               <input
                 type="tel"
                 id="phone"
                 placeholder="۰۹۱۲ ۳۳۳ ۳۳۳۳"
-                className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground placeholder-muted-foreground transition-colors focus:border-accent focus:outline-none sm:py-4"
+                className="w-full border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
                 dir="ltr"
               />
             </div>
 
             {/* Date & Time */}
-            <div className="grid grid-cols-2 gap-4 sm:gap-5">
+            <div className="grid grid-cols-2 gap-8 sm:gap-10">
               <div>
-                <label htmlFor="date" className="text-xs text-muted-foreground">
+                <label htmlFor="date" className="block text-xs tracking-[0.1em] text-muted-foreground mb-3">
                   تاریخ بازدید
                 </label>
                 <input
                   type="date"
                   id="date"
-                  className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none sm:py-4"
+                  className="w-full border-b border-border bg-transparent px-0 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
                 />
               </div>
               <div>
-                <label htmlFor="time" className="text-xs text-muted-foreground">
+                <label htmlFor="time" className="block text-xs tracking-[0.1em] text-muted-foreground mb-3">
                   ساعت بازدید
                 </label>
                 <input
                   type="time"
                   id="time"
-                  className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none sm:py-4"
+                  className="w-full border-b border-border bg-transparent px-0 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
                 />
               </div>
             </div>
 
             {/* Message */}
             <div>
-              <label htmlFor="message" className="text-xs text-muted-foreground">
+              <label htmlFor="message" className="block text-xs tracking-[0.1em] text-muted-foreground mb-3">
                 پیام (اختیاری)
               </label>
               <textarea
                 id="message"
-                placeholder="توضیح یا سوال خاصی..."
-                rows={3}
-                className="mt-2 w-full border border-border bg-background px-4 py-3 text-sm text-foreground placeholder-muted-foreground transition-colors focus:border-accent focus:outline-none sm:py-4"
+                placeholder="نظر یا سوال خود را بنویسید..."
+                rows={2}
+                className="w-full border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
               />
             </div>
 
             {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full border-2 border-accent bg-accent py-4 text-xs font-light tracking-[0.15em] text-white transition-all hover:bg-accent/90 sm:text-sm"
-            >
-              تأیید جلسه بازدید
-            </button>
+            <div className="pt-4">
+              <button
+                type="submit"
+                className="w-full border border-accent bg-accent py-4 text-xs font-light tracking-[0.15em] text-white transition-all hover:bg-accent/90 focus:outline-none sm:text-sm"
+              >
+                تأیید و هماهنگی جلسه
+              </button>
+            </div>
           </form>
 
           {/* Info Text */}
-          <p className="mt-8 text-center text-xs text-muted-foreground sm:text-sm">
-            ما تا ۲ ساعت بعد تماس خواهیم گرفت
+          <p className="mt-10 text-center text-xs text-muted-foreground sm:mt-12 sm:text-sm">
+            ما تا ۲ ساعت بعد برای هماهنگی دقیق‌تر تماس خواهیم گرفت
           </p>
         </div>
       </section>
