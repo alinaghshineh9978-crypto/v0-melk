@@ -61,7 +61,7 @@ export function FeaturedProperties() {
   return (
     <section id="properties" className="bg-background">
 
-      {/* ── MOBILE: Magazine Spreads ────────────────────────────── */}
+      {/* ── MOBILE: Horizontal Scroll ────────────────────────────── */}
       <div className="md:hidden">
         {/* Mobile section label */}
         <div className="flex items-center justify-between px-5 pb-8 pt-16">
@@ -73,63 +73,74 @@ export function FeaturedProperties() {
           </span>
         </div>
 
-        <div className="space-y-0">
-          {properties.map((property, index) => (
-            <Link href={`/property/${property.id}`} key={property.id}>
-              <article className="group relative cursor-pointer">
-                {/* Full-bleed cover image */}
-                <div className="relative h-[85svh] w-full overflow-hidden bg-muted">
-                  <Image
-                    src={property.image}
-                    alt={`${property.type} در ${property.location}`}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-active:scale-[1.02]"
-                    sizes="100vw"
-                    priority={index < 2}
-                  />
-                  {/* Gradient — bottom-heavy for text legibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="overflow-x-auto">
+          <div className="flex gap-5 px-5 pb-8">
+            {properties.map((property, index) => (
+              <Link href={`/property/${property.id}`} key={property.id}>
+                <article className="group relative cursor-pointer flex-shrink-0 w-72">
+                  {/* Cover image */}
+                  <div className="relative aspect-[3/4] overflow-hidden bg-muted">
+                    <Image
+                      src={property.image}
+                      alt={`${property.type} در ${property.location}`}
+                      fill
+                      className="object-cover transition-transform duration-700 ease-out group-active:scale-[1.02]"
+                      sizes="288px"
+                      priority={index < 2}
+                    />
+                    {/* Gradient — subtle bottom overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-                  {/* Type tag — top-right */}
-                  <div className="absolute right-5 top-6 border border-white/30 px-2.5 py-1">
-                    <span className="text-[10px] tracking-[0.25em] text-white/80">
-                      {property.type}
-                    </span>
-                  </div>
-
-                  {/* Editorial text block — bottom */}
-                  <div className="absolute bottom-0 right-0 w-full px-5 pb-8">
-                    <p className="mb-3 text-xs tracking-[0.2em] text-white/50">
-                      {property.caption}
-                    </p>
-                    <div className="mb-4 flex items-center gap-2">
-                      <svg className="h-6 w-6 flex-shrink-0 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      <h3 className="text-3xl font-light leading-tight text-white">
-                        {property.location}
-                      </h3>
-                    </div>
-                    <div className="flex items-center gap-4 border-t border-white/20 pt-4">
-                      <span className="text-sm font-light text-white/60">
-                        {property.area} متر مربع
-                      </span>
-                      <span className="h-px flex-1 bg-white/10" />
-                      <span className="text-xs tracking-[0.2em] font-semibold text-accent">
-                        مشاهده
+                    {/* Type tag — top-right */}
+                    <div className="absolute right-3 top-3 border border-white/30 px-2.5 py-1">
+                      <span className="text-[10px] tracking-[0.25em] text-white/80">
+                        {property.type}
                       </span>
                     </div>
+
+                    {/* Bottom content */}
+                    <div className="absolute bottom-0 left-0 right-0 px-4 pb-4">
+                      <p className="mb-2 text-xs tracking-[0.2em] text-white/50">
+                        {property.caption}
+                      </p>
+                      <div className="mb-3 flex items-center gap-1.5">
+                        <svg className="h-4 w-4 flex-shrink-0 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <h3 className="text-sm font-light text-white">
+                          {property.location}
+                        </h3>
+                      </div>
+                      <div className="flex items-center gap-3 border-t border-white/20 pt-3">
+                        <span className="text-xs font-light text-white/60">
+                          {property.area} متر
+                        </span>
+                        <span className="h-px flex-1 bg-white/10" />
+                        <span className="text-xs tracking-[0.2em] font-semibold text-accent">
+                          مشاهده
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                </div>
 
                 {index < properties.length - 1 && (
                   <div className="h-px w-full bg-border" />
                 )}
-              </article>
-            </Link>
-          ))}
+          {/* CTA */}
+          <div className="flex items-center justify-end gap-3 border-t border-border px-5 pt-8">
+            <a
+              href="/properties"
+              className="flex items-center gap-2 text-xs tracking-[0.15em] text-accent hover:text-accent/80 transition-colors"
+            >
+              <span>مشاهده تمام املاک</span>
+              <svg className="h-4 w-4 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
         </div>
+      </div>
 
         {/* Mobile — View All */}
         <div className="flex items-center justify-center py-14">
@@ -160,7 +171,7 @@ export function FeaturedProperties() {
           </div>
 
           {/* Grid */}
-          <div className="grid grid-cols-2 gap-6 lg:grid-cols-3 lg:gap-8">
+          <div className="grid grid-cols-2 gap-6 lg:grid-cols-3 lg:gap-10">
             {properties.map((property) => (
               <Link href={`/property/${property.id}`} key={property.id}>
                 <article
