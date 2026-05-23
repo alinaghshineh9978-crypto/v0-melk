@@ -193,17 +193,6 @@ export default function PropertyPage() {
       {/* Schedule Visit Section */}
       <section className="px-6 py-16 sm:px-8 sm:py-20 md:px-12 md:py-24">
         <div className="mx-auto max-w-2xl">
-          {/* Section Header */}
-          <div className="mb-12 text-center md:mb-16">
-            <span className="mb-3 inline-block text-xs tracking-[0.2em] text-accent">
-              بازدید
-            </span>
-            <h2 className="text-3xl font-light text-foreground sm:text-4xl md:text-5xl">
-              هماهنگی جلسه بازدید
-            </h2>
-            <div className="mx-auto mt-8 h-px w-16 bg-accent" />
-          </div>
-
           {/* CTA Button */}
           <button
             onClick={() => setIsModalOpen(true)}
