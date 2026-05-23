@@ -128,15 +128,22 @@ export default function PropertyPage() {
         </div>
 
         {/* Hero Content - Bottom */}
-        <div className="absolute bottom-0 left-0 right-0 px-6 pb-32 sm:px-8 sm:pb-40 md:px-12 md:pb-48">
-          <div className="mx-auto max-w-2xl">
-            {/* Title */}
-            <h1 className="mb-2 text-3xl font-light text-white sm:text-4xl md:mb-3 md:text-5xl lg:text-6xl">
+        <div className="absolute bottom-0 left-0 right-0 flex flex-col px-6 pb-8 sm:px-8 sm:pb-10 md:px-12 md:pb-12">
+          <div className="mx-auto w-full max-w-2xl">
+            {/* Title - Top */}
+            <h1 className="mb-auto text-3xl font-light text-white sm:text-4xl md:text-5xl lg:text-6xl">
               {property.location}
             </h1>
 
-            {/* Specs Grid - 3 Columns with Border Only */}
-            <div className="space-y-6 sm:space-y-8 md:space-y-10">
+            {/* Address */}
+            <div className="mb-8 mt-auto sm:mb-10 md:mb-12">
+              <p className="text-xs text-white/60 sm:text-sm">
+                {property.caption}
+              </p>
+            </div>
+
+            {/* Specs Grid - Bottom */}
+            <div className="border-t border-white/20 pt-6 sm:pt-8 md:pt-10">
               <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-5">
                 {/* Bedrooms */}
                 <div className="flex flex-col items-center border-r border-white/20 pr-3 text-center sm:pr-4 md:pr-5">
@@ -168,13 +175,6 @@ export default function PropertyPage() {
                   </span>
                 </div>
               </div>
-            </div>
-
-            {/* Address - Below Specs */}
-            <div className="mt-8 border-t border-white/20 pt-6 sm:mt-10 sm:pt-8 md:mt-12 md:pt-10">
-              <p className="text-xs text-white/60 sm:text-sm">
-                {property.caption}
-              </p>
             </div>
           </div>
         </div>
