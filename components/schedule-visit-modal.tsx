@@ -43,7 +43,7 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
       />
 
       {/* Modal */}
-      <div className="fixed left-1/2 top-1/2 z-50 w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto border border-border bg-background p-8 sm:p-10 md:p-12">
+      <div className="fixed left-1/2 top-1/2 z-50 w-[90vw] max-h-[90vh] max-w-xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto border border-border bg-background p-8 sm:p-10 md:p-12">
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -55,8 +55,8 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
         </button>
 
         {/* Header */}
-        <div className="mb-12 md:mb-14">
-          <h2 className="text-4xl font-light text-foreground sm:text-5xl md:text-6xl font-serif">
+        <div className="mb-12 md:mb-14 pr-6">
+          <h2 className="text-3xl font-light text-foreground sm:text-4xl md:text-5xl font-serif">
             هماهنگی جلسه بازدید
           </h2>
           <div className="mt-8 h-px w-16 bg-accent" />
@@ -123,18 +123,18 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
               rows={2}
               value={formData.message}
               onChange={handleChange}
-              className="w-full border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
+              className="w-full border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4 resize-none"
             />
           </div>
 
           {/* Agreement Checkbox */}
-          <div className="flex items-start gap-4 pt-4">
+          <div className="flex gap-3 pt-4">
             <input
               type="checkbox"
               id="agreed"
               checked={formData.agreed}
               onChange={handleChange}
-              className="mt-1 h-4 w-4 border border-border bg-background cursor-pointer accent-accent"
+              className="mt-1 h-4 w-4 min-w-4 border border-border bg-background cursor-pointer accent-accent flex-shrink-0"
               required
             />
             <label htmlFor="agreed" className="text-xs text-muted-foreground cursor-pointer leading-relaxed">
