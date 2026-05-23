@@ -142,34 +142,34 @@ export default function PropertyPage() {
 
             {/* Price + Specs Grid */}
             <div className="space-y-6 sm:space-y-8 md:space-y-10">
-              {/* Specs Grid - 3 Columns: Bedrooms | Price | Area */}
-              <div className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+              {/* Specs Grid - 3 Columns with Glass Morphism */}
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-5 rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur-md sm:p-8 md:p-10">
                 {/* Bedrooms */}
-                <div className="flex flex-col items-start text-right">
-                  <span className="text-[9px] tracking-[0.2em] text-white/60 sm:text-[10px]">
+                <div className="flex flex-col items-center text-center">
+                  <span className="text-[9px] tracking-[0.2em] text-white/70 sm:text-[10px]">
                     اتاق خواب
                   </span>
-                  <span className="mt-1 text-lg font-light text-white sm:mt-2 sm:text-xl md:text-2xl lg:text-3xl">
+                  <span className="mt-3 text-2xl font-light text-white sm:mt-4 sm:text-3xl md:text-4xl">
                     {property.bedrooms}
                   </span>
                 </div>
 
                 {/* Price */}
-                <div className="flex flex-col items-center text-center">
-                  <span className="text-[9px] tracking-[0.2em] text-white/60 sm:text-[10px]">
+                <div className="flex flex-col items-center border-l border-r border-white/20 px-3 text-center sm:px-4 md:px-5">
+                  <span className="text-[9px] tracking-[0.2em] text-white/70 sm:text-[10px]">
                     قیمت
                   </span>
-                  <span className="mt-1 text-xs font-light text-white sm:mt-2 sm:text-sm md:text-base lg:text-lg">
+                  <span className="mt-3 text-sm font-light text-white sm:mt-4 sm:text-base md:text-lg">
                     {property.price}
                   </span>
                 </div>
 
                 {/* Area */}
-                <div className="flex flex-col items-end text-left">
-                  <span className="text-[9px] tracking-[0.2em] text-white/60 sm:text-[10px]">
+                <div className="flex flex-col items-center text-center">
+                  <span className="text-[9px] tracking-[0.2em] text-white/70 sm:text-[10px]">
                     متر مربع
                   </span>
-                  <span className="mt-1 text-lg font-light text-white sm:mt-2 sm:text-xl md:text-2xl lg:text-3xl">
+                  <span className="mt-3 text-2xl font-light text-white sm:mt-4 sm:text-3xl md:text-4xl">
                     {property.area}
                   </span>
                 </div>
