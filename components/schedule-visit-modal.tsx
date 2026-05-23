@@ -56,17 +56,17 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
 
         {/* Header */}
         <div className="mb-12 md:mb-14 pr-6">
-          <h2 className="text-3xl font-light text-foreground sm:text-4xl md:text-5xl font-serif">
+          <h2 className="font-sans text-2xl font-light text-foreground sm:text-3xl md:text-4xl leading-relaxed">
             هماهنگی جلسه بازدید
           </h2>
-          <div className="mt-8 h-px w-16 bg-accent" />
+          <div className="mt-6 h-px w-12 bg-accent" />
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
           {/* Name Input */}
           <div>
-            <label htmlFor="name" className="block text-xs tracking-[0.1em] text-muted-foreground mb-3">
+            <label htmlFor="name" className="block font-sans text-xs font-light text-muted-foreground mb-3 leading-relaxed">
               نام و نام خانوادگی
             </label>
             <input
@@ -75,14 +75,14 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
               placeholder="نام شما را وارد کنید"
               value={formData.name}
               onChange={handleChange}
-              className="w-full border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
+              className="w-full font-sans font-light border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
               required
             />
           </div>
 
           {/* Phone Input */}
           <div>
-            <label htmlFor="phone" className="block text-xs tracking-[0.1em] text-muted-foreground mb-3">
+            <label htmlFor="phone" className="block font-sans text-xs font-light text-muted-foreground mb-3 leading-relaxed">
               شماره تماس
             </label>
             <input
@@ -91,7 +91,7 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
               placeholder="۰۹۱۲ ۳۳۳ ۳۳۳۳"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
+              className="w-full font-sans font-light border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
               dir="ltr"
               required
             />
@@ -99,7 +99,7 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
 
           {/* Date - Single Input */}
           <div>
-            <label htmlFor="date" className="block text-xs tracking-[0.1em] text-muted-foreground mb-3">
+            <label htmlFor="date" className="block font-sans text-xs font-light text-muted-foreground mb-3 leading-relaxed">
               تاریخ بازدید
             </label>
             <input
@@ -107,14 +107,14 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
               id="date"
               value={formData.day}
               onChange={(e) => setFormData({ ...formData, day: e.target.value })}
-              className="w-full border-b border-border bg-transparent px-0 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
+              className="w-full font-sans font-light border-b border-border bg-transparent px-0 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
               required
             />
           </div>
 
           {/* Message */}
           <div>
-            <label htmlFor="message" className="block text-xs tracking-[0.1em] text-muted-foreground mb-3">
+            <label htmlFor="message" className="block font-sans text-xs font-light text-muted-foreground mb-3 leading-relaxed">
               پیام (اختیاری)
             </label>
             <textarea
@@ -123,7 +123,7 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
               rows={2}
               value={formData.message}
               onChange={handleChange}
-              className="w-full border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4 resize-none"
+              className="w-full font-sans font-light border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4 resize-none"
             />
           </div>
 
@@ -137,7 +137,7 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
               className="mt-1 h-4 w-4 min-w-4 border border-border bg-background cursor-pointer accent-accent flex-shrink-0"
               required
             />
-            <label htmlFor="agreed" className="text-xs text-muted-foreground cursor-pointer leading-relaxed">
+            <label htmlFor="agreed" className="font-sans text-xs font-light text-muted-foreground cursor-pointer leading-loose">
               من شرایط و ضوابط را می‌پذیرم و آماده بازدید ملک هستم
             </label>
           </div>
@@ -147,7 +147,7 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
             <button
               type="submit"
               disabled={!formData.agreed}
-              className="w-full border border-accent bg-accent py-4 text-xs font-light tracking-[0.15em] text-white transition-all hover:bg-accent/90 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed sm:text-sm"
+              className="w-full font-sans font-light border border-accent bg-accent py-4 text-sm text-white transition-all hover:bg-accent/90 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
             >
               تأیید و هماهنگی جلسه
             </button>
@@ -155,7 +155,7 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
         </form>
 
         {/* Info Text */}
-        <p className="mt-8 text-center text-xs text-muted-foreground sm:mt-10 sm:text-sm">
+        <p className="mt-8 text-center font-sans text-xs font-light text-muted-foreground leading-loose sm:mt-10">
           ما تا ۲ ساعت بعد برای هماهنگی دقیق‌تر تماس خواهیم گرفت
         </p>
       </div>
