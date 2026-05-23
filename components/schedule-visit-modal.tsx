@@ -38,18 +38,39 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal */}
-      <div className="fixed left-1/2 top-1/2 z-50 w-[90vw] max-h-[90vh] max-w-xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto border border-border bg-background p-8 sm:p-10 md:p-12">
+      <div 
+        className="fixed left-1/2 top-1/2 z-50 w-[90vw] max-h-[90vh] max-w-xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto bg-background p-8 sm:p-10 md:p-12"
+        style={{
+          boxShadow: '0 0 80px 0 oklch(0.72 0.06 80 / 0.15), 0 0 0 1px oklch(0.72 0.06 80 / 0.25)',
+        }}
+      >
+        {/* Gold accent line - top */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
+        
+        {/* Inner frame border */}
+        <div className="absolute inset-3 border border-accent/15 pointer-events-none" />
+        
+        {/* Corner accents */}
+        <div className="absolute left-3 top-3 h-4 w-px bg-accent/40" />
+        <div className="absolute left-3 top-3 h-px w-4 bg-accent/40" />
+        <div className="absolute right-3 top-3 h-4 w-px bg-accent/40" />
+        <div className="absolute right-3 top-3 h-px w-4 bg-accent/40" />
+        <div className="absolute left-3 bottom-3 h-4 w-px bg-accent/40" />
+        <div className="absolute left-3 bottom-3 h-px w-4 bg-accent/40" />
+        <div className="absolute right-3 bottom-3 h-4 w-px bg-accent/40" />
+        <div className="absolute right-3 bottom-3 h-px w-4 bg-accent/40" />
+
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute right-6 top-6 sm:right-8 sm:top-8 flex h-6 w-6 items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+          className="absolute right-6 top-6 sm:right-8 sm:top-8 z-10 flex h-8 w-8 items-center justify-center border border-accent/20 text-muted-foreground hover:text-accent hover:border-accent/50 transition-colors"
         >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
