@@ -90,8 +90,8 @@ export function FeaturedProperties() {
                   {/* Gradient — bottom-heavy for text legibility */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                  {/* Type tag — top-left */}
-                  <div className="absolute left-5 top-6 border border-white/30 px-2.5 py-1">
+                  {/* Type tag — top-right */}
+                  <div className="absolute right-5 top-6 border border-white/30 px-2.5 py-1">
                     <span className="text-[10px] tracking-[0.25em] text-white/80">
                       {property.type}
                     </span>
@@ -187,11 +187,11 @@ export function FeaturedProperties() {
 
                   <div className="mt-4 space-y-1">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs tracking-[0.15em] text-muted-foreground">
-                        {property.type}
-                      </span>
                       <span className="text-xs text-muted-foreground">
                         {property.area} متر
+                      </span>
+                      <span className="text-xs tracking-[0.15em] text-muted-foreground">
+                        {property.type}
                       </span>
                     </div>
                     <div className="flex items-center gap-2 pt-1">
