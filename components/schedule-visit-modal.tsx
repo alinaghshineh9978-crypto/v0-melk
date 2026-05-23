@@ -18,7 +18,6 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Form submitted:", formData)
-    // Reset form
     setFormData({ name: "", phone: "", day: "", message: "" })
     onClose()
   }
@@ -29,102 +28,105 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-40 bg-black/40 backdrop-blur-md transition-opacity"
+        className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal */}
-      <div className="fixed left-1/2 top-1/2 z-50 w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto border border-border bg-background p-8 sm:p-10 md:p-12">
+      <div className="fixed left-1/2 top-1/2 z-50 w-[90vw] max-w-lg -translate-x-1/2 -translate-y-1/2 overflow-y-auto bg-background border border-border p-14 sm:p-16 md:p-20">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute right-6 top-6 sm:right-8 sm:top-8 flex h-6 w-6 items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+          className="absolute right-8 top-8 flex h-5 w-5 items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
         >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
         {/* Header */}
-        <div className="mb-12 md:mb-14">
-          <h2 className="text-4xl font-light text-foreground sm:text-5xl md:text-6xl font-serif">
-            هماهنگی جلسه بازدید
+        <div className="mb-16 md:mb-20">
+          <h2 className="font-serif text-5xl sm:text-6xl font-light text-foreground leading-tight">
+            هماهنگی
           </h2>
-          <div className="mt-8 h-px w-16 bg-accent" />
+          <p className="mt-6 text-xs text-muted-foreground font-light tracking-[0.15em] uppercase">
+            برای مشاهدهٔ پروپرتی
+          </p>
+          <div className="mt-10 h-px w-10 bg-accent" />
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form onSubmit={handleSubmit} className="space-y-10 md:space-y-12">
           {/* Name Input */}
-          <div>
-            <label htmlFor="name" className="block text-xs tracking-[0.15em] text-muted-foreground mb-4">
-              نام و نام خانوادگی
+          <div className="space-y-5">
+            <label htmlFor="name" className="block text-[11px] tracking-[0.25em] text-muted-foreground uppercase font-light">
+              نام
             </label>
             <input
               type="text"
               id="name"
-              placeholder="نام شما"
+              placeholder=""
               value={formData.name}
               onChange={handleChange}
-              className="w-full border-b border-border bg-transparent px-0 py-3 text-base font-light text-foreground placeholder-muted-foreground/40 transition-colors focus:border-accent focus:outline-none sm:py-4 md:text-lg"
+              className="w-full bg-transparent border-b border-border/60 px-0 py-3 text-base font-light text-foreground placeholder-transparent focus:border-accent focus:outline-none transition-colors"
               required
             />
           </div>
 
           {/* Phone Input */}
-          <div>
-            <label htmlFor="phone" className="block text-xs tracking-[0.15em] text-muted-foreground mb-4">
-              شماره تماس
+          <div className="space-y-5">
+            <label htmlFor="phone" className="block text-[11px] tracking-[0.25em] text-muted-foreground uppercase font-light">
+              تماس
             </label>
             <input
               type="tel"
               id="phone"
-              placeholder="۰۹۱۲ ۳۳۳ ۳۳۳۳"
+              placeholder=""
               value={formData.phone}
               onChange={handleChange}
-              className="w-full border-b border-border bg-transparent px-0 py-3 text-base font-light text-foreground placeholder-muted-foreground/40 transition-colors focus:border-accent focus:outline-none sm:py-4 md:text-lg"
+              className="w-full bg-transparent border-b border-border/60 px-0 py-3 text-base font-light text-foreground placeholder-transparent focus:border-accent focus:outline-none transition-colors"
               dir="ltr"
               required
             />
           </div>
 
-          {/* Date - Single Input */}
-          <div>
-            <label htmlFor="date" className="block text-xs tracking-[0.15em] text-muted-foreground mb-4">
-              تاریخ بازدید
+          {/* Date Input */}
+          <div className="space-y-5">
+            <label htmlFor="date" className="block text-[11px] tracking-[0.25em] text-muted-foreground uppercase font-light">
+              تاریخ
             </label>
             <input
               type="date"
               id="date"
               value={formData.day}
               onChange={(e) => setFormData({ ...formData, day: e.target.value })}
-              className="w-full border-b border-border bg-transparent px-0 py-3 text-base font-light text-foreground transition-colors focus:border-accent focus:outline-none sm:py-4 md:text-lg"
+              className="w-full bg-transparent border-b border-border/60 px-0 py-3 text-base font-light text-foreground focus:border-accent focus:outline-none transition-colors"
               required
             />
           </div>
 
-          {/* Message */}
-          <div>
-            <label htmlFor="message" className="block text-xs tracking-[0.15em] text-muted-foreground mb-4">
-              پیام (اختیاری)
+          {/* Message Input */}
+          <div className="space-y-5">
+            <label htmlFor="message" className="block text-[11px] tracking-[0.25em] text-muted-foreground uppercase font-light">
+              پیام
             </label>
             <textarea
               id="message"
-              placeholder="نظر یا سوال خود"
-              rows={3}
+              placeholder=""
+              rows={2}
               value={formData.message}
               onChange={handleChange}
-              className="w-full border-b border-border bg-transparent px-0 py-3 text-base font-light text-foreground placeholder-muted-foreground/40 transition-colors focus:border-accent focus:outline-none sm:py-4 md:text-lg"
+              className="w-full bg-transparent border-b border-border/60 px-0 py-3 text-base font-light text-foreground placeholder-transparent focus:border-accent focus:outline-none transition-colors resize-none"
             />
           </div>
 
           {/* Submit Button */}
-          <div className="pt-6">
+          <div className="pt-8">
             <button
               type="submit"
-              className="w-full border border-accent bg-accent py-4 text-xs font-light tracking-[0.2em] text-white transition-all hover:bg-accent/90 focus:outline-none sm:py-5 md:text-sm"
+              className="w-full bg-accent border border-accent py-4 px-6 text-[11px] font-light tracking-[0.25em] text-white hover:bg-accent/90 transition-colors uppercase"
             >
-              تأیید و هماهنگی جلسه
+              ثبت درخواست
             </button>
           </div>
         </form>
