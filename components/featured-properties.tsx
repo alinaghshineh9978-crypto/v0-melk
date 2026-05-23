@@ -88,6 +88,8 @@ export function FeaturedProperties() {
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
+    if (!e.touches[0]) return
+    
     const touch = e.touches[0]
     const dx = touch.clientX - touchStartXRef.current
     const dy = touch.clientY - touchStartYRef.current
@@ -107,11 +109,15 @@ export function FeaturedProperties() {
 
     // Only handle horizontal swipes
     if (axisLockedRef.current === 'horizontal') {
-      e.preventDefault()
+      try {
+        e.preventDefault()
+      } catch (err) {
+        // Silently fail if preventDefault not available
+      }
       touchCurrentXRef.current = touch.clientX
       
       // Calculate drag offset as percentage of viewport for smooth visual feedback
-      const containerWidth = (e.currentTarget as HTMLElement).offsetWidth || window.innerWidth
+      const containerWidth = (e.currentTarget as HTMLElement)?.offsetWidth || window.innerWidth
       const dragPercent = (dx / containerWidth) * 100
       
       // Add resistance at edges
@@ -126,6 +132,8 @@ export function FeaturedProperties() {
   const handleTouchEnd = () => {
     if (axisLockedRef.current !== 'horizontal' || !isDraggingRef.current) {
       setDragOffset(0)
+      axisLockedRef.current = 'none'
+      isDraggingRef.current = false
       return
     }
 
