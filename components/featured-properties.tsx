@@ -58,50 +58,38 @@ const properties = [
 export function FeaturedProperties() {
   const [hoveredId, setHoveredId] = useState<number | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const touchStartRef = useRef(0)
-  const scrollTimeoutRef = useRef<NodeJS.Timeout>()
+  const touchStartXRef = useRef(0)
+  const touchStartYRef = useRef(0)
+  const isHorizontalRef = useRef(false)
 
-  const scrollToIndex = (index: number) => {
+  const goTo = (index: number) => {
     if (index < 0 || index >= properties.length) return
     setCurrentIndex(index)
-    if (scrollRef.current) {
-      const cardWidth = scrollRef.current.offsetWidth
-      scrollRef.current.scrollTo({
-        left: index * cardWidth,
-        behavior: 'smooth'
-      })
-    }
   }
 
-  const nextSlide = () => scrollToIndex(currentIndex + 1)
-  const prevSlide = () => scrollToIndex(currentIndex - 1)
+  const nextSlide = () => goTo(currentIndex + 1)
+  const prevSlide = () => goTo(currentIndex - 1)
 
-  // Handle touch/swipe - snap to next card on minimal swipe
   const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartRef.current = e.touches[0].clientX
+    touchStartXRef.current = e.touches[0].clientX
+    touchStartYRef.current = e.touches[0].clientY
+    isHorizontalRef.current = false
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    const dx = Math.abs(e.touches[0].clientX - touchStartXRef.current)
+    const dy = Math.abs(e.touches[0].clientY - touchStartYRef.current)
+    if (dx > dy && dx > 8) {
+      isHorizontalRef.current = true
+      e.preventDefault()
+    }
   }
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (!scrollRef.current) return
-    const touchEnd = e.changedTouches[0].clientX
-    const diff = touchStartRef.current - touchEnd
-    const threshold = 30 // Minimal swipe distance to trigger next card
-
-    // Clear any pending timeout
-    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
-
-    // Swipe left = next card (RTL)
-    if (diff > threshold) {
-      nextSlide()
-    }
-    // Swipe right = prev card (RTL)
-    else if (diff < -threshold) {
-      prevSlide()
-    } else {
-      // Snap to current index if swipe is too small
-      scrollToIndex(currentIndex)
-    }
+    if (!isHorizontalRef.current) return
+    const diff = touchStartXRef.current - e.changedTouches[0].clientX
+    if (diff > 40) nextSlide()
+    else if (diff < -40) prevSlide()
   }
 
   return (
@@ -133,21 +121,22 @@ export function FeaturedProperties() {
 
         {/* Carousel container */}
         <div className="relative">
-          {/* Scroll container - swipe enabled */}
-          <div 
-            ref={scrollRef}
-            className="overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide"
+          {/* Viewport — clips the track, no scroll */}
+          <div
+            className="overflow-hidden"
             onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
-            onScroll={(e) => {
-              // Prevent scroll event from interfering with touch-based snapping
-              if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
-            }}
           >
-            <div className="flex">
+            {/* Track — moves via transform only */}
+            <div
+              className="flex transition-transform duration-500 ease-in-out will-change-transform"
+              style={{ transform: `translateX(${currentIndex * 100}%)` }}
+            >
               {properties.map((property, index) => (
-                <Link href={`/property/${property.id}`} key={property.id} className="w-full flex-shrink-0 snap-center px-5">
-                  <article className="group relative cursor-pointer">
+                <div key={property.id} className="w-full flex-shrink-0 px-5">
+                  <Link href={`/property/${property.id}`}>
+                    <article className="group relative cursor-pointer">
                     {/* Cover image */}
                     <div className="relative aspect-[3/4] overflow-hidden bg-muted">
                       <Image
@@ -195,9 +184,10 @@ export function FeaturedProperties() {
                           </span>
                         </div>
                       </div>
-                    </div>
-                  </article>
-                </Link>
+                      </div>
+                    </article>
+                  </Link>
+                </div>
               ))}
             </div>
           </div>
@@ -220,7 +210,7 @@ export function FeaturedProperties() {
               {properties.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => scrollToIndex(index)}
+                  onClick={() => goTo(index)}
                   className={`h-1.5 transition-all duration-300 ${
                     index === currentIndex 
                       ? 'w-6 bg-accent' 
