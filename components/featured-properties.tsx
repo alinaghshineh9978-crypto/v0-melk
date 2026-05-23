@@ -142,20 +142,6 @@ export function FeaturedProperties() {
         </div>
       </div>
 
-        {/* Mobile — View All */}
-        <div className="flex items-center justify-center py-14">
-          <a
-            href="#"
-            className="inline-flex items-center gap-3 text-sm tracking-[0.1em] text-foreground transition-colors active:text-accent"
-          >
-            <span>مشاهده تمام املاک</span>
-            <svg className="h-4 w-4 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-        </div>
-      </div>
-
       {/* ── DESKTOP: Minimal 3-column grid ──────────────────────── */}
       <div className="hidden px-6 py-24 md:block lg:py-32 xl:py-40">
         <div className="mx-auto max-w-7xl">
