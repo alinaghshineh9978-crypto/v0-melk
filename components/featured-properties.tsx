@@ -58,9 +58,15 @@ const properties = [
 export function FeaturedProperties() {
   const [hoveredId, setHoveredId] = useState<number | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
+  
+  // Touch gesture state
   const touchStartXRef = useRef(0)
   const touchStartYRef = useRef(0)
-  const isHorizontalRef = useRef(false)
+  const touchStartTimeRef = useRef(0)
+  const touchCurrentXRef = useRef(0)
+  const axisLockedRef = useRef<'none' | 'horizontal' | 'vertical'>('none')
+  const isDraggingRef = useRef(false)
+  const [dragOffset, setDragOffset] = useState(0)
 
   const goTo = (index: number) => {
     if (index < 0 || index >= properties.length) return
@@ -71,25 +77,89 @@ export function FeaturedProperties() {
   const prevSlide = () => goTo(currentIndex - 1)
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartXRef.current = e.touches[0].clientX
-    touchStartYRef.current = e.touches[0].clientY
-    isHorizontalRef.current = false
+    const touch = e.touches[0]
+    touchStartXRef.current = touch.clientX
+    touchStartYRef.current = touch.clientY
+    touchCurrentXRef.current = touch.clientX
+    touchStartTimeRef.current = Date.now()
+    axisLockedRef.current = 'none'
+    isDraggingRef.current = false
+    setDragOffset(0)
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    const dx = Math.abs(e.touches[0].clientX - touchStartXRef.current)
-    const dy = Math.abs(e.touches[0].clientY - touchStartYRef.current)
-    if (dx > dy && dx > 8) {
-      isHorizontalRef.current = true
+    const touch = e.touches[0]
+    const dx = touch.clientX - touchStartXRef.current
+    const dy = touch.clientY - touchStartYRef.current
+    const absDx = Math.abs(dx)
+    const absDy = Math.abs(dy)
+
+    // Lock axis after 10px movement (prevents accidental triggers)
+    if (axisLockedRef.current === 'none' && (absDx > 10 || absDy > 10)) {
+      // Require 1.5:1 ratio for horizontal lock (more reliable detection)
+      if (absDx > absDy * 1.5) {
+        axisLockedRef.current = 'horizontal'
+        isDraggingRef.current = true
+      } else {
+        axisLockedRef.current = 'vertical'
+      }
+    }
+
+    // Only handle horizontal swipes
+    if (axisLockedRef.current === 'horizontal') {
       e.preventDefault()
+      touchCurrentXRef.current = touch.clientX
+      
+      // Calculate drag offset as percentage of viewport for smooth visual feedback
+      const containerWidth = (e.currentTarget as HTMLElement).offsetWidth || window.innerWidth
+      const dragPercent = (dx / containerWidth) * 100
+      
+      // Add resistance at edges
+      const isAtStart = currentIndex === 0 && dx > 0
+      const isAtEnd = currentIndex === properties.length - 1 && dx < 0
+      const resistance = (isAtStart || isAtEnd) ? 0.25 : 1
+      
+      setDragOffset(dragPercent * resistance)
     }
   }
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (!isHorizontalRef.current) return
-    const diff = touchStartXRef.current - e.changedTouches[0].clientX
-    if (diff > 40) nextSlide()
-    else if (diff < -40) prevSlide()
+  const handleTouchEnd = () => {
+    if (axisLockedRef.current !== 'horizontal' || !isDraggingRef.current) {
+      setDragOffset(0)
+      return
+    }
+
+    const dx = touchCurrentXRef.current - touchStartXRef.current
+    const elapsed = Date.now() - touchStartTimeRef.current
+    const velocity = Math.abs(dx) / elapsed // px per ms
+
+    // Thresholds for swipe detection
+    const minDistance = 50 // minimum pixels to trigger swipe
+    const velocityThreshold = 0.3 // fast swipe threshold (px/ms)
+    const shortSwipeDistance = 25 // shorter distance allowed for fast swipes
+
+    // Determine if swipe should trigger
+    const isFastSwipe = velocity > velocityThreshold && Math.abs(dx) > shortSwipeDistance
+    const isLongSwipe = Math.abs(dx) > minDistance
+
+    if (isFastSwipe || isLongSwipe) {
+      if (dx < 0) {
+        nextSlide()
+      } else {
+        prevSlide()
+      }
+    }
+
+    // Reset drag state
+    setDragOffset(0)
+    axisLockedRef.current = 'none'
+    isDraggingRef.current = false
+  }
+
+  const handleTouchCancel = () => {
+    setDragOffset(0)
+    axisLockedRef.current = 'none'
+    isDraggingRef.current = false
   }
 
   return (
@@ -123,15 +193,21 @@ export function FeaturedProperties() {
         <div className="relative">
           {/* Viewport — clips the track, no scroll */}
           <div
-            className="overflow-hidden"
+            className="overflow-hidden touch-pan-y"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
+            onTouchCancel={handleTouchCancel}
           >
-            {/* Track — moves via transform only */}
+            {/* Track — moves via transform, includes drag offset for live feedback */}
             <div
-              className="flex transition-transform duration-500 ease-in-out will-change-transform"
-              style={{ transform: `translateX(${currentIndex * 100}%)` }}
+              className={`flex will-change-transform ${
+                isDraggingRef.current ? '' : 'transition-transform duration-400 ease-out'
+              }`}
+              style={{ 
+                transform: `translateX(calc(${currentIndex * 100}% + ${dragOffset}%))`,
+                transitionTimingFunction: dragOffset === 0 ? 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none'
+              }}
             >
               {properties.map((property, index) => (
                 <div key={property.id} className="w-full flex-shrink-0 px-5">
