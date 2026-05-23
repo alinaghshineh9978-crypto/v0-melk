@@ -105,8 +105,8 @@ export function FeaturedProperties() {
                   {/* Gold highlight — top edge glow */}
                   <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[oklch(0.72_0.06_80/0.18)] to-transparent" />
 
-                  {/* Type tag — top-right */}
-                  <div className="absolute right-3 top-3 border border-white/30 bg-black/20 px-2.5 py-1 backdrop-blur-sm">
+                  {/* Type tag — top-left */}
+                  <div className="absolute left-3 top-3 border border-white/30 bg-black/20 px-2.5 py-1 backdrop-blur-sm">
                     <span className="text-[10px] tracking-[0.25em] text-white/90">
                       {property.type}
                     </span>
