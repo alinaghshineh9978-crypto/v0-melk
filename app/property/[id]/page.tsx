@@ -140,41 +140,49 @@ export default function PropertyPage() {
               {property.caption}
             </p>
 
-            {/* Price */}
-            <div className="mb-6 sm:mb-8 md:mb-10">
-              <p className="text-sm text-white/70 sm:text-base">قیمت</p>
-              <p className="text-2xl font-light text-white sm:text-3xl md:text-4xl">
-                {property.price}
-              </p>
-            </div>
+            {/* Price + Specs Grid */}
+            <div className="space-y-6 sm:space-y-8 md:space-y-10">
+              {/* Price Row */}
+              <div className="flex items-end justify-between border-b border-white/20 pb-4 sm:pb-5 md:pb-6">
+                <div>
+                  <p className="mb-2 text-xs text-white/60 sm:text-sm">قیمت</p>
+                  <p className="text-2xl font-light text-white sm:text-3xl md:text-4xl lg:text-5xl">
+                    {property.price}
+                  </p>
+                </div>
+              </div>
 
-            {/* Stats Row */}
-            <div className="flex items-center gap-6 sm:gap-8">
-              <div className="flex flex-col">
-                <span className="text-lg font-light text-white sm:text-xl md:text-2xl">
-                  {property.bedrooms}
-                </span>
-                <span className="text-[9px] tracking-[0.2em] text-white/60 sm:text-[10px]">
-                  اتاق خواب
-                </span>
-              </div>
-              <div className="h-8 w-px bg-white/20" />
-              <div className="flex flex-col">
-                <span className="text-lg font-light text-white sm:text-xl md:text-2xl">
-                  {property.bathrooms}
-                </span>
-                <span className="text-[9px] tracking-[0.2em] text-white/60 sm:text-[10px]">
-                  سرویس
-                </span>
-              </div>
-              <div className="h-8 w-px bg-white/20" />
-              <div className="flex flex-col">
-                <span className="text-lg font-light text-white sm:text-xl md:text-2xl">
-                  {property.area}
-                </span>
-                <span className="text-[9px] tracking-[0.2em] text-white/60 sm:text-[10px]">
-                  متر مربع
-                </span>
+              {/* Specs Grid - Right to Left */}
+              <div className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+                {/* Bedrooms */}
+                <div className="flex flex-col items-start text-right">
+                  <span className="text-[9px] tracking-[0.2em] text-white/60 sm:text-[10px]">
+                    اتاق خواب
+                  </span>
+                  <span className="mt-1 text-lg font-light text-white sm:mt-2 sm:text-xl md:text-2xl lg:text-3xl">
+                    {property.bedrooms}
+                  </span>
+                </div>
+
+                {/* Bathrooms */}
+                <div className="flex flex-col items-center text-center">
+                  <span className="text-[9px] tracking-[0.2em] text-white/60 sm:text-[10px]">
+                    سرویس
+                  </span>
+                  <span className="mt-1 text-lg font-light text-white sm:mt-2 sm:text-xl md:text-2xl lg:text-3xl">
+                    {property.bathrooms}
+                  </span>
+                </div>
+
+                {/* Area */}
+                <div className="flex flex-col items-end text-left">
+                  <span className="text-[9px] tracking-[0.2em] text-white/60 sm:text-[10px]">
+                    متر مربع
+                  </span>
+                  <span className="mt-1 text-lg font-light text-white sm:mt-2 sm:text-xl md:text-2xl lg:text-3xl">
+                    {property.area}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
