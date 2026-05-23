@@ -42,6 +42,35 @@ export function Header() {
             : "bg-transparent py-6"
         }`}
       >
+        {/* Top auth bar — desktop only */}
+        <div className="hidden md:flex items-center justify-end px-6 pb-3 border-b border-current/10">
+          <div className="mx-auto flex max-w-7xl w-full items-center justify-end">
+            <div className="flex items-center gap-4">
+              <a
+                href="/login"
+                className={`text-xs tracking-[0.15em] transition-colors ${
+                  scrolled
+                    ? "text-foreground hover:text-accent"
+                    : "text-white/90 hover:text-white"
+                }`}
+              >
+                ورود
+              </a>
+              <a
+                href="/signup"
+                className={`px-3 py-1.5 text-xs tracking-[0.15em] transition-all ${
+                  scrolled
+                    ? "border border-accent bg-accent text-white hover:bg-accent/90"
+                    : "border border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
+                }`}
+              >
+                ثبت‌نام
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Main header */}
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
           {/* Logo */}
           <a href="#" className="flex flex-col">
@@ -63,30 +92,6 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden items-center gap-10 md:flex">
-            {/* Auth buttons — first in nav */}
-            <div className="flex items-center gap-4 pr-8 border-l border-current/20">
-              <a
-                href="/login"
-                className={`text-xs tracking-[0.15em] transition-colors ${
-                  scrolled
-                    ? "text-foreground hover:text-accent"
-                    : "text-white/90 hover:text-white"
-                }`}
-              >
-                ورود
-              </a>
-              <a
-                href="/signup"
-                className={`px-4 py-2 text-xs tracking-[0.15em] transition-all ${
-                  scrolled
-                    ? "border border-accent bg-accent text-white hover:bg-accent/90"
-                    : "border border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
-                }`}
-              >
-                ثبت‌نام
-              </a>
-            </div>
-
             {/* املاک with dropdown */}
             <div
               ref={dropdownRef}
