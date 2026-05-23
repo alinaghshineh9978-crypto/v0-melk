@@ -88,7 +88,7 @@ export function FeaturedProperties() {
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!e.touches[0]) return
+    if (!e.touches?.[0]) return
     
     const touch = e.touches[0]
     const dx = touch.clientX - touchStartXRef.current
@@ -102,6 +102,10 @@ export function FeaturedProperties() {
       if (absDx > absDy * 1.5) {
         axisLockedRef.current = 'horizontal'
         isDraggingRef.current = true
+        // Only preventDefault for horizontal swipes
+        if (e.cancelable) {
+          e.preventDefault()
+        }
       } else {
         axisLockedRef.current = 'vertical'
       }
@@ -109,10 +113,8 @@ export function FeaturedProperties() {
 
     // Only handle horizontal swipes
     if (axisLockedRef.current === 'horizontal') {
-      try {
+      if (e.cancelable) {
         e.preventDefault()
-      } catch (err) {
-        // Silently fail if preventDefault not available
       }
       touchCurrentXRef.current = touch.clientX
       
@@ -139,7 +141,7 @@ export function FeaturedProperties() {
 
     const dx = touchCurrentXRef.current - touchStartXRef.current
     const elapsed = Date.now() - touchStartTimeRef.current
-    const velocity = Math.abs(dx) / elapsed // px per ms
+    const velocity = elapsed > 0 ? Math.abs(dx) / elapsed : 0 // px per ms, guard against division
 
     // Thresholds for swipe detection
     const minDistance = 50 // minimum pixels to trigger swipe
