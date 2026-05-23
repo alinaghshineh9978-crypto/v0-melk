@@ -209,13 +209,8 @@ export default function PropertyPage() {
             onClick={() => setIsModalOpen(true)}
             className="w-full border border-accent bg-accent py-4 text-xs font-light tracking-[0.15em] text-white transition-all hover:bg-accent/90 focus:outline-none sm:text-sm"
           >
-            برنامه‌ریزی برای بازدید
+            هماهنگی جلسه بازدید
           </button>
-
-          {/* Info Text */}
-          <p className="mt-8 text-center text-xs text-muted-foreground sm:mt-10 sm:text-sm">
-            روی دکمه بالا کلیک کنید تا فرم هماهنگی را پر کنید
-          </p>
         </div>
       </section>
 
