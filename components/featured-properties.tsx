@@ -123,22 +123,23 @@ export function FeaturedProperties() {
                       </div>
                     </div>
                   </div>
-
-                {index < properties.length - 1 && (
-                  <div className="h-px w-full bg-border" />
-                )}
-          {/* CTA */}
-          <div className="flex items-center justify-end gap-3 border-t border-border px-5 pt-8">
-            <a
-              href="/properties"
-              className="flex items-center gap-2 text-xs tracking-[0.15em] text-accent hover:text-accent/80 transition-colors"
-            >
-              <span>مشاهده تمام املاک</span>
-              <svg className="h-4 w-4 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+                </article>
+              </Link>
+            ))}
           </div>
+        </div>
+
+        {/* CTA */}
+        <div className="flex items-center justify-end gap-3 border-t border-border px-5 pt-8">
+          <a
+            href="/properties"
+            className="flex items-center gap-2 text-xs tracking-[0.15em] text-accent hover:text-accent/80 transition-colors"
+          >
+            <span>مشاهده تمام املاک</span>
+            <svg className="h-4 w-4 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
         </div>
       </div>
 
