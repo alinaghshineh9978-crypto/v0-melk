@@ -158,6 +158,30 @@ export function Header() {
             >
               تماس
             </a>
+
+            {/* Auth buttons */}
+            <div className="flex items-center gap-4 mr-4 border-r border-current/20 pr-8">
+              <a
+                href="/login"
+                className={`text-xs tracking-[0.15em] transition-colors ${
+                  scrolled
+                    ? "text-foreground hover:text-accent"
+                    : "text-white/90 hover:text-white"
+                }`}
+              >
+                ورود
+              </a>
+              <a
+                href="/signup"
+                className={`px-4 py-2 text-xs tracking-[0.15em] transition-all ${
+                  scrolled
+                    ? "border border-accent bg-accent text-white hover:bg-accent/90"
+                    : "border border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
+                }`}
+              >
+                ثبت‌نام
+              </a>
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -261,6 +285,25 @@ export function Header() {
           >
             تماس
           </a>
+
+          {/* Auth buttons for mobile */}
+          <div className="h-px w-16 bg-border mt-4" />
+          <div className="flex flex-col items-center gap-4 mt-4">
+            <a
+              href="/login"
+              onClick={() => setMenuOpen(false)}
+              className="text-xl font-light text-foreground transition-colors hover:text-accent active:text-accent"
+            >
+              ورود
+            </a>
+            <a
+              href="/signup"
+              onClick={() => setMenuOpen(false)}
+              className="px-8 py-3 border border-accent bg-accent text-white text-sm tracking-[0.15em] transition-all hover:bg-accent/90"
+            >
+              ثبت‌نام
+            </a>
+          </div>
         </nav>
       </div>
     </>
