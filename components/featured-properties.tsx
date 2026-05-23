@@ -88,7 +88,7 @@ export function FeaturedProperties() {
         <div>
           {properties.map((property, index) => (
             <Link href={`/property/${property.id}`} key={property.id}>
-              <article className="group relative cursor-pointer border-b border-border">
+              <article className="group relative cursor-pointer">
                 {/* Cover image */}
                 <div className="relative aspect-[3/4] overflow-hidden bg-muted">
                   <Image
@@ -102,9 +102,12 @@ export function FeaturedProperties() {
                   {/* Gradient — subtle bottom overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
+                  {/* Gold highlight — top edge glow */}
+                  <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[oklch(0.72_0.06_80/0.18)] to-transparent" />
+
                   {/* Type tag — top-right */}
-                  <div className="absolute right-3 top-3 border border-white/30 px-2.5 py-1">
-                    <span className="text-[10px] tracking-[0.25em] text-white/80">
+                  <div className="absolute right-3 top-3 border border-white/30 bg-black/20 px-2.5 py-1 backdrop-blur-sm">
+                    <span className="text-[10px] tracking-[0.25em] text-white/90">
                       {property.type}
                     </span>
                   </div>
@@ -134,6 +137,15 @@ export function FeaturedProperties() {
                     </div>
                   </div>
                 </div>
+
+                {/* Spacer between cards */}
+                {index < properties.length - 1 && (
+                  <div className="flex items-center gap-4 px-5 py-6">
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+                    <div className="h-1 w-1 rounded-full bg-accent/40" />
+                    <div className="h-px flex-1 bg-gradient-to-l from-transparent via-accent/30 to-transparent" />
+                  </div>
+                )}
               </article>
             </Link>
           ))}
@@ -170,37 +182,62 @@ export function FeaturedProperties() {
 
             {/* Horizontal Scroll Container */}
             <div className="overflow-x-auto pb-8">
-              <div className="flex gap-8 lg:gap-12">
+              <div className="flex gap-10 lg:gap-16 px-2 pb-4">
                 {properties.map((property, index) => (
                   <Link href={`/property/${property.id}`} key={property.id}>
                     <article
-                      className="group relative cursor-pointer flex-shrink-0 w-96 overflow-hidden border border-accent/20 p-3 transition-all duration-500 hover:border-accent/60 hover:bg-accent/5"
+                      className="group relative cursor-pointer flex-shrink-0 w-[340px] lg:w-[400px] overflow-hidden transition-all duration-500"
+                      style={{
+                        boxShadow: hoveredId === property.id
+                          ? '0 0 40px 0 oklch(0.72 0.06 80 / 0.18), 0 0 0 1px oklch(0.72 0.06 80 / 0.35)'
+                          : '0 0 0 1px oklch(0.72 0.06 80 / 0.12)'
+                      }}
                       onMouseEnter={() => setHoveredId(property.id)}
                       onMouseLeave={() => setHoveredId(null)}
                     >
-                      <div className="relative aspect-[4/5] overflow-hidden bg-muted">
+                      <div className="relative aspect-[4/5] overflow-hidden bg-muted p-2">
+                        {/* Inner border frame */}
+                        <div className="absolute inset-2 z-10 border border-accent/20 pointer-events-none transition-colors duration-500 group-hover:border-accent/50" />
+
                         <Image
                           src={property.image}
                           alt={`${property.type} در ${property.location}`}
                           fill
-                          className={`object-cover transition-transform duration-700 ease-out ${
+                          className={`object-cover transition-transform duration-700 ease-out p-2 ${
                             hoveredId === property.id ? "scale-105" : "scale-100"
                           }`}
-                          sizes="384px"
+                          sizes="400px"
                         />
+
+                        {/* Gold top highlight */}
+                        <div className="absolute inset-x-2 top-2 z-10 h-24 bg-gradient-to-b from-[oklch(0.72_0.06_80/0.20)] to-transparent pointer-events-none" />
+
+                        {/* Hover overlay */}
                         <div
-                          className={`absolute inset-0 transition-all duration-500 ${
-                            hoveredId === property.id ? "bg-foreground/40" : "bg-foreground/0"
+                          className={`absolute inset-2 z-10 transition-all duration-500 ${
+                            hoveredId === property.id ? "bg-foreground/35" : "bg-foreground/0"
                           }`}
                         />
+
+                        {/* Hover CTA */}
+                        <div
+                          className={`absolute inset-0 z-20 flex items-center justify-center transition-all duration-500 ${
+                            hoveredId === property.id ? "opacity-100" : "pointer-events-none opacity-0"
+                          }`}
+                        >
+                          <span className="border border-accent/80 bg-black/30 px-6 py-2 text-xs tracking-[0.2em] text-white backdrop-blur-sm">
+                            مشاهده جزئیات
+                          </span>
+                        </div>
                       </div>
 
-                      <div className="mt-5 space-y-3">
+                      {/* Card info */}
+                      <div className="px-4 py-4 space-y-3 bg-background">
                         <div className="flex items-center justify-between">
                           <span className="text-xs text-muted-foreground">
                             {property.area} متر
                           </span>
-                          <span className="text-xs tracking-[0.15em] text-muted-foreground">
+                          <span className="text-[10px] tracking-[0.2em] text-accent/80 border border-accent/20 px-2 py-0.5">
                             {property.type}
                           </span>
                         </div>
@@ -209,20 +246,10 @@ export function FeaturedProperties() {
                             <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                           </svg>
-                          <h3 className="text-sm font-medium text-foreground">
+                          <h3 className="text-sm font-light text-foreground">
                             {property.location}
                           </h3>
                         </div>
-                      </div>
-
-                      <div
-                        className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${
-                          hoveredId === property.id ? "opacity-100" : "pointer-events-none opacity-0"
-                        }`}
-                      >
-                        <span className="border border-white/80 bg-transparent px-6 py-2 text-xs tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-foreground">
-                          مشاهده جزئیات
-                        </span>
                       </div>
                     </article>
                   </Link>
