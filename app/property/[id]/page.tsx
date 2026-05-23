@@ -191,15 +191,101 @@ export default function PropertyPage() {
       </section>
 
       {/* Schedule Visit Section */}
-      <section className="px-6 py-16 sm:px-8 sm:py-20 md:px-12 md:py-24">
-        <div className="mx-auto max-w-2xl">
+      <section className="relative px-6 py-20 sm:px-8 sm:py-24 md:px-12 md:py-32 overflow-hidden">
+        {/* Background design elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/3 rounded-full blur-2xl" />
+          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/10 to-transparent" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-3xl">
+          {/* Section Header */}
+          <div className="mb-12 text-center sm:mb-16">
+            <span className="mb-4 inline-block text-xs tracking-[0.2em] text-muted-foreground">
+              قدم بعدی
+            </span>
+            <h2 className="font-sans text-2xl font-light text-foreground sm:text-3xl md:text-4xl">
+              علاقه‌مند به بازدید هستید؟
+            </h2>
+            <div className="mx-auto mt-6 h-px w-12 bg-accent/50" />
+          </div>
+
+          {/* Features Grid */}
+          <div className="mb-12 grid grid-cols-3 gap-4 sm:mb-16 sm:gap-6">
+            {/* Feature 1 */}
+            <div 
+              className="group relative p-4 text-center transition-all duration-300 sm:p-6"
+              style={{
+                boxShadow: '0 0 0 1px oklch(0.72 0.06 80 / 0.15)'
+              }}
+            >
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+              <svg className="mx-auto mb-3 h-6 w-6 text-accent/70 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-[10px] font-light text-muted-foreground sm:text-xs">پاسخ‌گویی سریع</span>
+            </div>
+
+            {/* Feature 2 */}
+            <div 
+              className="group relative p-4 text-center transition-all duration-300 sm:p-6"
+              style={{
+                boxShadow: '0 0 0 1px oklch(0.72 0.06 80 / 0.15)'
+              }}
+            >
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+              <svg className="mx-auto mb-3 h-6 w-6 text-accent/70 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <span className="text-[10px] font-light text-muted-foreground sm:text-xs">مشاوره تخصصی</span>
+            </div>
+
+            {/* Feature 3 */}
+            <div 
+              className="group relative p-4 text-center transition-all duration-300 sm:p-6"
+              style={{
+                boxShadow: '0 0 0 1px oklch(0.72 0.06 80 / 0.15)'
+              }}
+            >
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+              <svg className="mx-auto mb-3 h-6 w-6 text-accent/70 sm:h-8 sm:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span className="text-[10px] font-light text-muted-foreground sm:text-xs">بازدید حضوری</span>
+            </div>
+          </div>
+
           {/* CTA Button */}
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="w-full border border-accent bg-accent py-4 text-xs font-light tracking-[0.15em] text-white transition-all hover:bg-accent/90 focus:outline-none sm:text-sm"
-          >
-            هماهنگی جلسه بازدید
-          </button>
+          <div className="relative">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="group relative w-full overflow-hidden py-5 text-sm font-light tracking-[0.15em] text-white transition-all duration-500 sm:py-6 sm:text-base"
+              style={{
+                background: 'linear-gradient(135deg, oklch(0.72 0.06 80) 0%, oklch(0.65 0.07 75) 100%)',
+                boxShadow: '0 0 30px 0 oklch(0.72 0.06 80 / 0.25)'
+              }}
+            >
+              <span className="relative z-10">هماهنگی جلسه بازدید</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+            </button>
+            
+            {/* Corner accents */}
+            <div className="absolute -left-1 -top-1 h-3 w-px bg-accent" />
+            <div className="absolute -left-1 -top-1 h-px w-3 bg-accent" />
+            <div className="absolute -right-1 -top-1 h-3 w-px bg-accent" />
+            <div className="absolute -right-1 -top-1 h-px w-3 bg-accent" />
+            <div className="absolute -bottom-1 -left-1 h-3 w-px bg-accent" />
+            <div className="absolute -bottom-1 -left-1 h-px w-3 bg-accent" />
+            <div className="absolute -bottom-1 -right-1 h-3 w-px bg-accent" />
+            <div className="absolute -bottom-1 -right-1 h-px w-3 bg-accent" />
+          </div>
+
+          {/* Info text */}
+          <p className="mt-8 text-center text-xs font-light text-muted-foreground sm:mt-10">
+            کارشناسان ما ظرف ۲ ساعت با شما تماس خواهند گرفت
+          </p>
         </div>
       </section>
 
