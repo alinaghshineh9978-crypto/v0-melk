@@ -95,11 +95,12 @@ export default function SignUpPage() {
       {/* Logo / Brand */}
       <div className="mb-10 text-center">
         <Link href="/" className="inline-block">
-          <h1 className="text-xl font-light tracking-[0.25em] text-white/90">
-            نقشینه
+          <h1 className="font-serif text-2xl font-light tracking-[0.18em] text-white/90">
+            Naghshineh Collection
           </h1>
-          <p className="mt-2 text-[10px] tracking-[0.2em] text-white/40">
-            ESTATES DIVISION
+          <div className="mx-auto mt-3 h-px w-10 bg-gradient-to-r from-transparent via-[oklch(0.72_0.06_80/0.6)] to-transparent" />
+          <p className="mt-3 text-[9px] tracking-[0.35em] text-white/35 uppercase">
+            Estates Division
           </p>
         </Link>
       </div>
