@@ -12,7 +12,6 @@ const properties = [
     location: "تهران، نیاوران",
     area: "۴۵۰",
     caption: "بالاترین نقطه شهر",
-    issue: "۰۱",
   },
   {
     id: 2,
@@ -21,7 +20,6 @@ const properties = [
     location: "شمال، نوشهر",
     area: "۱۲۰۰",
     caption: "آرامش در دل طبیعت",
-    issue: "۰۲",
   },
   {
     id: 3,
@@ -30,7 +28,6 @@ const properties = [
     location: "تهران، الهیه",
     area: "۳۲۰",
     caption: "زندگی در قلب شهر",
-    issue: "۰۳",
   },
   {
     id: 4,
@@ -39,7 +36,6 @@ const properties = [
     location: "تهران، فرمانیه",
     area: "۵۸۰",
     caption: "سبک زندگی خاص",
-    issue: "۰۴",
   },
   {
     id: 5,
@@ -48,7 +44,6 @@ const properties = [
     location: "کیش",
     area: "۸۵۰",
     caption: "رویای جزیره",
-    issue: "۰۵",
   },
   {
     id: 6,
@@ -57,7 +52,6 @@ const properties = [
     location: "تهران، زعفرانیه",
     area: "۲۸۰",
     caption: "ظرافت در هر جزئیات",
-    issue: "۰۶",
   },
 ]
 
@@ -95,13 +89,6 @@ export function FeaturedProperties() {
                   />
                   {/* Gradient — bottom-heavy for text legibility */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                  {/* Issue number — ghost watermark top-right */}
-                  <div className="absolute right-5 top-6">
-                    <span className="font-serif text-5xl font-light leading-none text-white/20">
-                      {property.issue}
-                    </span>
-                  </div>
 
                   {/* Type tag — top-left */}
                   <div className="absolute left-5 top-6 border border-white/30 px-2.5 py-1">
