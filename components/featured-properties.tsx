@@ -123,7 +123,7 @@ export function FeaturedProperties() {
                         {property.area} متر مربع
                       </span>
                       <span className="h-px flex-1 bg-white/10" />
-                      <span className="text-xs tracking-[0.2em] text-accent">
+                      <span className="text-xs tracking-[0.2em] font-semibold text-accent">
                         مشاهده
                       </span>
                     </div>
