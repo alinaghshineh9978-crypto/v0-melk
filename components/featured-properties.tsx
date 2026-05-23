@@ -73,8 +73,8 @@ export function FeaturedProperties() {
 
       {/* Content layer */}
       <div className="relative z-10">
-      {/* ── MOBILE: Vertical Stack ────────────────────────────── */}
-      <div className="space-y-0 md:hidden">
+      {/* ── MOBILE: Horizontal Scroll ────────────────────────────── */}
+      <div className="md:hidden">
         {/* Mobile section label */}
         <div className="flex items-center justify-between px-5 pb-8 pt-16">
           <span className="text-xs tracking-[0.2em] text-muted-foreground">
@@ -85,70 +85,64 @@ export function FeaturedProperties() {
           </span>
         </div>
 
-        <div>
-          {properties.map((property, index) => (
-            <Link href={`/property/${property.id}`} key={property.id}>
-              <article className="group relative cursor-pointer">
-                {/* Cover image */}
-                <div className="relative aspect-[3/4] overflow-hidden bg-muted">
-                  <Image
-                    src={property.image}
-                    alt={`${property.type} در ${property.location}`}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-active:scale-[1.02]"
-                    sizes="100vw"
-                    priority={index < 2}
-                  />
-                  {/* Gradient — subtle bottom overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        {/* Horizontal scroll container */}
+        <div className="overflow-x-auto pb-6">
+          <div className="flex gap-4 px-5">
+            {properties.map((property, index) => (
+              <Link href={`/property/${property.id}`} key={property.id}>
+                <article className="group relative cursor-pointer flex-shrink-0 w-72">
+                  {/* Cover image */}
+                  <div className="relative aspect-[3/4] overflow-hidden bg-muted">
+                    <Image
+                      src={property.image}
+                      alt={`${property.type} در ${property.location}`}
+                      fill
+                      className="object-cover transition-transform duration-700 ease-out group-active:scale-[1.02]"
+                      sizes="288px"
+                      priority={index < 2}
+                    />
+                    {/* Gradient — subtle bottom overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-                  {/* Gold highlight — top edge glow */}
-                  <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[oklch(0.72_0.06_80/0.18)] to-transparent" />
+                    {/* Gold highlight — top edge glow */}
+                    <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[oklch(0.72_0.06_80/0.18)] to-transparent" />
 
-                  {/* Type tag — top-left */}
-                  <div className="absolute left-3 top-3 border border-white/30 bg-black/20 px-2.5 py-1 backdrop-blur-sm">
-                    <span className="text-[10px] tracking-[0.25em] text-white/90">
-                      {property.type}
-                    </span>
-                  </div>
-
-                  {/* Bottom content */}
-                  <div className="absolute bottom-0 left-0 right-0 px-5 pb-5">
-                    <p className="mb-2 text-xs tracking-[0.2em] text-white/50">
-                      {property.caption}
-                    </p>
-                    <div className="mb-3 flex items-center gap-1.5">
-                      <svg className="h-4 w-4 flex-shrink-0 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      <h3 className="text-sm font-light text-white">
-                        {property.location}
-                      </h3>
-                    </div>
-                    <div className="flex items-center gap-3 border-t border-white/20 pt-3">
-                      <span className="text-xs font-light text-white/60">
-                        {property.area} متر
-                      </span>
-                      <span className="h-px flex-1 bg-white/10" />
-                      <span className="text-xs tracking-[0.2em] font-semibold text-accent">
-                        مشاهده
+                    {/* Type tag — top-left */}
+                    <div className="absolute left-3 top-3 border border-white/30 bg-black/20 px-2.5 py-1 backdrop-blur-sm">
+                      <span className="text-[10px] tracking-[0.25em] text-white/90">
+                        {property.type}
                       </span>
                     </div>
-                  </div>
-                </div>
 
-                {/* Spacer between cards */}
-                {index < properties.length - 1 && (
-                  <div className="flex items-center gap-4 px-5 py-6">
-                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
-                    <div className="h-1 w-1 rounded-full bg-accent/40" />
-                    <div className="h-px flex-1 bg-gradient-to-l from-transparent via-accent/30 to-transparent" />
+                    {/* Bottom content */}
+                    <div className="absolute bottom-0 left-0 right-0 px-4 pb-4">
+                      <p className="mb-2 text-xs tracking-[0.2em] text-white/50">
+                        {property.caption}
+                      </p>
+                      <div className="mb-3 flex items-center gap-1.5">
+                        <svg className="h-4 w-4 flex-shrink-0 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <h3 className="text-sm font-light text-white">
+                          {property.location}
+                        </h3>
+                      </div>
+                      <div className="flex items-center gap-3 border-t border-white/20 pt-3">
+                        <span className="text-xs font-light text-white/60">
+                          {property.area} متر
+                        </span>
+                        <span className="h-px flex-1 bg-white/10" />
+                        <span className="text-xs tracking-[0.2em] font-semibold text-accent">
+                          مشاهده
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                )}
-              </article>
-            </Link>
-          ))}
+                </article>
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* CTA */}
