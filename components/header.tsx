@@ -72,7 +72,7 @@ export function Header() {
 
         {/* Main header */}
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
-          {/* Logo */}
+          {/* Logo — Left */}
           <a href="#" className="flex flex-col">
             <span
               className={`font-serif text-lg tracking-wide transition-colors ${
@@ -189,9 +189,9 @@ export function Header() {
             </a>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button — Right */}
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => setMenuOpen((v) => !v)}
             className={`flex h-12 w-12 items-center justify-center md:hidden ${
               scrolled ? "text-foreground" : "text-white"
             }`}
