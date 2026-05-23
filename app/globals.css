@@ -76,7 +76,7 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-peyda), 'Geist', sans-serif;
+  --font-sans: var(--font-vazirmatn), 'Geist', sans-serif;
   --font-serif: var(--font-playfair), 'Times New Roman', serif;
   --font-mono: 'Geist Mono', monospace;
   --color-background: var(--background);
@@ -129,6 +129,60 @@
   ::selection {
     background-color: oklch(0.72 0.06 80 / 0.3);
   }
+
+  /* Persian Typography — Peyda-inspired aesthetic */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-light tracking-tight;
+    letter-spacing: -0.02em;
+    word-spacing: 0.05em;
+  }
+
+  h1 {
+    @apply text-5xl md:text-6xl;
+    font-weight: 300;
+    line-height: 1.1;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  p, body {
+    @apply font-light;
+    font-weight: 300;
+    line-height: 1.8;
+    letter-spacing: 0.3px;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+
+  button {
+    @apply font-light;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+
+  label {
+    @apply font-light;
+    font-weight: 300;
+    letter-spacing: 0.25px;
+  }
+
+  input, textarea, select {
+    @apply font-light;
+    font-weight: 300;
+    letter-spacing: 0.2px;
+  }
 }
 
 /* Smooth scrolling */
@@ -136,12 +190,13 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Persian/Arabic text — tighter letter-spacing and comfortable line height */
+/* Persian/Arabic text — refined spacing for luxury minimal aesthetic */
 :lang(fa),
 [dir="rtl"] {
-  letter-spacing: 0;
+  letter-spacing: 0.3px;
   word-spacing: 0.04em;
-  line-height: 1.9;
+  line-height: 1.85;
+  font-feature-settings: 'kern' 1;
 }
 
 /* Custom scrollbar for luxury feel */
