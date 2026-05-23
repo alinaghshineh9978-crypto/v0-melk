@@ -1,25 +1,35 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     day: "",
     message: "",
+    agreed: false,
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target
-    setFormData((prev) => ({ ...prev, [id]: value }))
+    const { id, value, type } = e.target as HTMLInputElement
+    if (type === "checkbox") {
+      setFormData((prev) => ({ ...prev, agreed: (e.target as HTMLInputElement).checked }))
+    } else {
+      setFormData((prev) => ({ ...prev, [id]: value }))
+    }
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Form submitted:", formData)
-    setFormData({ name: "", phone: "", day: "", message: "" })
-    onClose()
+    if (formData.agreed) {
+      setFormData({ name: "", phone: "", day: "", message: "", agreed: false })
+      onClose()
+      router.push("/#properties")
+    }
   }
 
   if (!isOpen) return null
@@ -117,11 +127,27 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
             />
           </div>
 
+          {/* Agreement Checkbox */}
+          <div className="flex items-start gap-4 pt-4">
+            <input
+              type="checkbox"
+              id="agreed"
+              checked={formData.agreed}
+              onChange={handleChange}
+              className="mt-1 h-4 w-4 border border-border bg-background cursor-pointer accent-accent"
+              required
+            />
+            <label htmlFor="agreed" className="text-xs text-muted-foreground cursor-pointer leading-relaxed">
+              من شرایط و ضوابط را می‌پذیرم و آماده بازدید ملک هستم
+            </label>
+          </div>
+
           {/* Submit Button */}
           <div className="pt-4">
             <button
               type="submit"
-              className="w-full border border-accent bg-accent py-4 text-xs font-light tracking-[0.15em] text-white transition-all hover:bg-accent/90 focus:outline-none sm:text-sm"
+              disabled={!formData.agreed}
+              className="w-full border border-accent bg-accent py-4 text-xs font-light tracking-[0.15em] text-white transition-all hover:bg-accent/90 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed sm:text-sm"
             >
               تأیید و هماهنگی جلسه
             </button>
