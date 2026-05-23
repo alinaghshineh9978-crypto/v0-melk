@@ -7,7 +7,6 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
     name: "",
     phone: "",
     day: "",
-    month: "",
     message: "",
   })
 
@@ -20,7 +19,7 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
     e.preventDefault()
     console.log("Form submitted:", formData)
     // Reset form
-    setFormData({ name: "", phone: "", day: "", month: "", message: "" })
+    setFormData({ name: "", phone: "", day: "", message: "" })
     onClose()
   }
 
@@ -90,53 +89,19 @@ export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClo
             />
           </div>
 
-          {/* Date - Day & Month */}
-          <div className="grid grid-cols-2 gap-8 sm:gap-10">
-            <div>
-              <label htmlFor="day" className="block text-xs tracking-[0.1em] text-muted-foreground mb-3">
-                روز
-              </label>
-              <input
-                type="number"
-                id="day"
-                placeholder="۱ تا ۳۱"
-                min="1"
-                max="31"
-                value={formData.day}
-                onChange={handleChange}
-                className="w-full border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
-                dir="ltr"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="month" className="block text-xs tracking-[0.1em] text-muted-foreground mb-3">
-                ماه
-              </label>
-              <select
-                id="month"
-                value={formData.month}
-                onChange={handleChange}
-                className="w-full border-b border-border bg-transparent px-0 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
-                required
-              >
-                <option value="" disabled>
-                  انتخاب ماه
-                </option>
-                <option value="01">فروردین</option>
-                <option value="02">اردیبهشت</option>
-                <option value="03">خرداد</option>
-                <option value="04">تیر</option>
-                <option value="05">مرداد</option>
-                <option value="06">شهریور</option>
-                <option value="07">مهر</option>
-                <option value="08">آبان</option>
-                <option value="09">آذر</option>
-                <option value="10">دی</option>
-                <option value="11">بهمن</option>
-                <option value="12">اسفند</option>
-              </select>
-            </div>
+          {/* Date - Single Input */}
+          <div>
+            <label htmlFor="date" className="block text-xs tracking-[0.1em] text-muted-foreground mb-3">
+              تاریخ بازدید
+            </label>
+            <input
+              type="date"
+              id="date"
+              value={formData.day}
+              onChange={(e) => setFormData({ ...formData, day: e.target.value, month: "" })}
+              className="w-full border-b border-border bg-transparent px-0 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
+              required
+            />
           </div>
 
           {/* Message */}
