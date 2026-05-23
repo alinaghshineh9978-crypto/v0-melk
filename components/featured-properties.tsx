@@ -59,8 +59,20 @@ export function FeaturedProperties() {
   const [hoveredId, setHoveredId] = useState<number | null>(null)
 
   return (
-    <section id="properties" className="bg-background">
+    <section id="properties" className="relative bg-background overflow-hidden">
+      {/* Background design elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Subtle gradient accent overlay */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent/3 rounded-full blur-2xl" />
+        
+        {/* Minimal geometric lines */}
+        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/10 to-transparent" />
+        <div className="absolute bottom-1/3 right-0 w-full h-px bg-gradient-to-l from-transparent via-accent/10 to-transparent" />
+      </div>
 
+      {/* Content layer */}
+      <div className="relative z-10">
       {/* ── MOBILE: Vertical Stack ────────────────────────────── */}
       <div className="space-y-0 md:hidden">
         {/* Mobile section label */}
@@ -232,6 +244,7 @@ export function FeaturedProperties() {
             </div>
           </div>
         </div>
+      </div>
       </div>
 
     </section>
