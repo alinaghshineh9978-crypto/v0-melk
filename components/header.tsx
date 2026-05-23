@@ -71,7 +71,7 @@ export function Header() {
         </div>
 
         {/* Main header */}
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6" dir="ltr">
           {/* Logo — Left */}
           <a href="#" className="flex flex-col">
             <span
