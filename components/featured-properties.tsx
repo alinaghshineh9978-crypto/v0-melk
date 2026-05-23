@@ -88,7 +88,6 @@ export function FeaturedProperties() {
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (!isHorizontalRef.current) return
     const diff = touchStartXRef.current - e.changedTouches[0].clientX
-    // RTL: swipe right→left (diff > 0) = next, swipe left→right (diff < 0) = prev
     if (diff > 40) nextSlide()
     else if (diff < -40) prevSlide()
   }
@@ -132,7 +131,7 @@ export function FeaturedProperties() {
             {/* Track — moves via transform only */}
             <div
               className="flex transition-transform duration-500 ease-in-out will-change-transform"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              style={{ transform: `translateX(${currentIndex * 100}%)` }}
             >
               {properties.map((property, index) => (
                 <div key={property.id} className="w-full flex-shrink-0 px-5">
