@@ -104,10 +104,15 @@ export function FeaturedProperties() {
 
         {/* Carousel container */}
         <div className="relative">
-          {/* Scroll container */}
+          {/* Scroll container - swipe enabled */}
           <div 
             ref={scrollRef}
-            className="overflow-x-hidden snap-x snap-mandatory scroll-smooth"
+            className="overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide"
+            onScroll={(e) => {
+              const container = e.currentTarget
+              const index = Math.round(container.scrollLeft / container.offsetWidth)
+              setCurrentIndex(index)
+            }}
           >
             <div className="flex">
               {properties.map((property, index) => (

@@ -216,3 +216,13 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: oklch(0.72 0.06 80 / 0.6);
 }
+
+/* Hide scrollbar for carousel */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
