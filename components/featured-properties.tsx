@@ -119,7 +119,10 @@ export function FeaturedProperties() {
                       <h3 className="text-3xl font-light leading-tight text-white">
                         {property.location}
                       </h3>
-                      <span className="text-2xl">📍</span>
+                      <svg className="h-6 w-6 text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
                     </div>
                     <div className="flex items-center gap-4 border-t border-white/20 pt-4">
                       <span className="text-sm font-light text-white/60">
@@ -208,7 +211,10 @@ export function FeaturedProperties() {
                       <h3 className="text-sm font-medium text-foreground">
                         {property.location}
                       </h3>
-                      <span className="text-lg">📍</span>
+                      <svg className="h-4 w-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
                     </div>
                   </div>
 
