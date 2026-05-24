@@ -71,6 +71,21 @@ export function HeroSection() {
       {/* Atmospheric fog — bottom */}
       <div className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent" />
       
+      {/* Subtle moving light reflection */}
+      <div 
+        className="hero-light-reflection absolute -inset-96 h-[120%] w-[200%] pointer-events-none"
+        style={{ 
+          background: `linear-gradient(
+            135deg, 
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 250, 240, 0.15) 20%,
+            rgba(255, 250, 240, 0.08) 50%,
+            rgba(255, 255, 255, 0) 100%
+          )`,
+          filter: "blur(60px)",
+        }}
+      />
+      
       {/* Subtle warm bloom */}
       <div 
         className="absolute bottom-20 right-20 h-[500px] w-[500px] rounded-full opacity-20 blur-[120px]"

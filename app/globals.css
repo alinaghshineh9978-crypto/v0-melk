@@ -226,3 +226,28 @@ html {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Subtle moving light reflection */
+@keyframes gentleReflection {
+  0% {
+    transform: translateX(-100%) translateY(-50%);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.08;
+  }
+  75% {
+    opacity: 0.12;
+  }
+  100% {
+    transform: translateX(150%) translateY(50%);
+    opacity: 0;
+  }
+}
+
+.hero-light-reflection {
+  animation: gentleReflection 12s ease-in-out infinite;
+}
