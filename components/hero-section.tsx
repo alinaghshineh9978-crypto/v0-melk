@@ -48,8 +48,8 @@ export function HeroSection() {
         >
           {/* Main title */}
           <h1
-            className="font-serif font-light text-white leading-[1.1]"
-            style={{ fontSize: "clamp(2.6rem, 6vw, 5.8rem)", letterSpacing: "0.12em" }}
+            className="font-serif font-light text-white leading-[1.1] uppercase"
+            style={{ fontSize: "clamp(2.2rem, 5vw, 4.6rem)", letterSpacing: "0.18em" }}
           >
             Naghshineh Collection
           </h1>
