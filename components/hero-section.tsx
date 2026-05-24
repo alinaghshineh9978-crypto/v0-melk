@@ -88,14 +88,6 @@ export function HeroSection() {
               transform: stage >= 3 ? "translateY(0)" : "translateY(24px)",
             }}
           >
-            {/* Description */}
-            <p
-              className="mt-10 font-sans font-light text-white/40 leading-relaxed"
-              style={{ fontSize: "clamp(0.82rem, 1.2vw, 0.95rem)", letterSpacing: "0.05em", maxWidth: "30rem" }}
-            >
-              Curated luxury estates across Iran and beyond.
-            </p>
-
             {/* Buttons */}
             <div className="mt-12 flex flex-wrap items-center gap-8">
 
