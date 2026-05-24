@@ -71,19 +71,20 @@ export function HeroSection() {
 
           {/* Primary wordmark */}
           <h1
-            className="font-serif font-light text-white leading-[0.95]"
-            style={{ fontSize: "clamp(2.8rem, 7.5vw, 7rem)", letterSpacing: "0.12em" }}
+            className="font-serif font-light text-white leading-[1.1]"
+            style={{ fontSize: "clamp(2rem, 4.5vw, 4rem)", letterSpacing: "0.12em" }}
           >
             NAGHSHINEH
           </h1>
 
           {/* Secondary word — slightly smaller, offset right */}
           <p
-            className="font-serif font-light text-white/55 mt-1"
+            className="font-serif font-light text-white/55 mt-2"
             style={{
-              fontSize: "clamp(1.2rem, 3vw, 2.8rem)",
+              fontSize: "clamp(0.85rem, 2vw, 1.8rem)",
               letterSpacing: "0.28em",
               paddingLeft: "0.18em",
+              lineHeight: "1.3",
             }}
           >
             COLLECTION
@@ -92,7 +93,7 @@ export function HeroSection() {
 
         {/* Gold divider */}
         <div
-          className="mt-7 mb-6 h-px bg-gradient-to-r from-[oklch(0.72_0.06_80/0.8)] via-[oklch(0.72_0.06_80/0.35)] to-transparent transition-all duration-[1200ms] ease-out"
+          className="mt-8 mb-8 h-px bg-gradient-to-r from-[oklch(0.72_0.06_80/0.8)] via-[oklch(0.72_0.06_80/0.35)] to-transparent transition-all duration-[1200ms] ease-out"
           style={{
             width: stage >= 3 ? "5rem" : "0rem",
             opacity: stage >= 3 ? 1 : 0,
