@@ -32,7 +32,7 @@ export function HeroSection() {
     <section 
       ref={heroRef}
       onMouseMove={handleMouseMove}
-      className="relative h-screen min-h-[700px] w-full overflow-hidden bg-[#0a0a0a]"
+      className="relative h-screen md:h-screen h-[92vh] md:h-[100vh] min-h-[700px] w-full overflow-hidden bg-[#0a0a0a]"
     >
 
       {/* ── Grain texture overlay ───────────────────────── */}
