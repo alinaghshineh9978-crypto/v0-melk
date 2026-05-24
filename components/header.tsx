@@ -73,22 +73,40 @@ export function Header() {
         {/* Main header */}
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6" dir="ltr">
           {/* Logo — Left */}
-          <a href="#" className="flex flex-col gap-0.5">
+          <a href="#" className="group flex flex-col">
+            {/* Primary wordmark */}
             <span
-              className={`font-serif font-light leading-none transition-colors ${
+              className={`font-serif font-extralight leading-none transition-colors ${
                 scrolled ? "text-foreground" : "text-white"
               }`}
-              style={{ fontSize: "0.95rem", letterSpacing: "0.22em" }}
+              style={{ fontSize: "1.1rem", letterSpacing: "0.32em" }}
             >
               NAGHSHINEH
             </span>
+            
+            {/* Thin divider line */}
+            <span 
+              className={`block mt-2 mb-1.5 h-px w-8 transition-all duration-300 group-hover:w-12 ${
+                scrolled ? "bg-accent/50" : "bg-white/25"
+              }`}
+            />
+            
+            {/* Sub-label — two-tier */}
             <span
               className={`font-sans font-light transition-colors ${
-                scrolled ? "text-muted-foreground" : "text-white/45"
+                scrolled ? "text-muted-foreground" : "text-white/40"
               }`}
-              style={{ fontSize: "0.52rem", letterSpacing: "0.42em" }}
+              style={{ fontSize: "0.5rem", letterSpacing: "0.38em" }}
             >
-              COLLECTION&nbsp;·&nbsp;ESTATES
+              COLLECTION
+            </span>
+            <span
+              className={`font-sans font-light mt-0.5 transition-colors ${
+                scrolled ? "text-muted-foreground/60" : "text-white/25"
+              }`}
+              style={{ fontSize: "0.42rem", letterSpacing: "0.32em" }}
+            >
+              ESTATES DIVISION
             </span>
           </a>
 
