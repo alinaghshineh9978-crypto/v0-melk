@@ -1,282 +1,152 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 
 export function HeroSection() {
   const [stage, setStage] = useState(0)
-  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 })
-  const heroRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    // Staggered cinematic reveal
-    const t1 = setTimeout(() => setStage(1), 300)   // image fade
-    const t2 = setTimeout(() => setStage(2), 1200)  // brand name
-    const t3 = setTimeout(() => setStage(3), 2000)  // subheadline
-    const t4 = setTimeout(() => setStage(4), 2600)  // buttons
-    const t5 = setTimeout(() => setStage(5), 3200)  // stats + scroll
-    return () => [t1, t2, t3, t4, t5].forEach(clearTimeout)
+    const t1 = setTimeout(() => setStage(1), 200)   // image
+    const t2 = setTimeout(() => setStage(2), 900)   // headline
+    const t3 = setTimeout(() => setStage(3), 1700)  // sub + buttons
+    return () => [t1, t2, t3].forEach(clearTimeout)
   }, [])
 
-  // Parallax mouse movement
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!heroRef.current) return
-    const rect = heroRef.current.getBoundingClientRect()
-    setMousePos({
-      x: (e.clientX - rect.left) / rect.width,
-      y: (e.clientY - rect.top) / rect.height,
-    })
-  }
-
   return (
-    <section 
-      ref={heroRef}
-      onMouseMove={handleMouseMove}
-      className="relative h-screen md:h-screen h-[92vh] md:h-[100vh] min-h-[700px] w-full overflow-hidden bg-[#0a0a0a]"
-    >
+    <section className="relative h-[92vh] md:h-screen min-h-[620px] w-full overflow-hidden bg-[#0a0a0a]">
 
-      {/* ── Grain texture overlay ───────────────────────── */}
-      <div 
-        className="pointer-events-none absolute inset-0 z-30 opacity-[0.03]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-        }}
-      />
-
-      {/* ── Background image with parallax ───────────────── */}
+      {/* ── Background ───────────────────────────────────── */}
       <div
-        className="absolute inset-0 transition-all duration-[2500ms] ease-out"
-        style={{ 
-          opacity: stage >= 1 ? 1 : 0,
-          transform: `scale(1.08) translate(${(mousePos.x - 0.5) * -12}px, ${(mousePos.y - 0.5) * -12}px)`,
-        }}
+        className="absolute inset-0 transition-opacity duration-[2800ms] ease-out"
+        style={{ opacity: stage >= 1 ? 1 : 0 }}
       >
         <Image
           src="/images/hero-bg.jpg"
-          alt="Luxury Estate Architecture"
+          alt="Naghshineh Collection — Luxury Estate"
           fill
           className="object-cover object-center"
-          style={{
-            filter: "brightness(0.5) contrast(1.08) saturate(0.75)",
-          }}
+          style={{ filter: "brightness(0.42) saturate(0.7) contrast(1.06)" }}
           priority
         />
       </div>
 
-      {/* ── Cinematic overlays ───────────────────────────── */}
-      {/* Deep vignette */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/30" />
-      
-      {/* Atmospheric fog — bottom */}
-      <div className="absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent" />
-      
-      {/* Subtle moving light reflection */}
-      <div 
-        className="hero-light-reflection absolute -inset-96 h-[120%] w-[200%] pointer-events-none"
-        style={{ 
-          background: `linear-gradient(
-            135deg, 
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 250, 240, 0.15) 20%,
-            rgba(255, 250, 240, 0.08) 50%,
-            rgba(255, 255, 255, 0) 100%
-          )`,
-          filter: "blur(60px)",
-        }}
-      />
-      
-      {/* Subtle warm bloom */}
-      <div 
-        className="absolute bottom-20 right-20 h-[500px] w-[500px] rounded-full opacity-20 blur-[120px]"
-        style={{ 
-          background: "radial-gradient(circle, oklch(0.72 0.06 80 / 0.4), transparent 70%)",
-          transform: `translate(${(mousePos.x - 0.5) * 30}px, ${(mousePos.y - 0.5) * 30}px)`,
-          transition: "transform 0.8s ease-out",
-        }}
-      />
-      
-      {/* Cool ambient light — top left */}
-      <div 
-        className="absolute -top-20 -left-20 h-[400px] w-[400px] rounded-full opacity-10 blur-[100px]"
-        style={{ 
-          background: "radial-gradient(circle, oklch(0.65 0.03 240 / 0.5), transparent 70%)",
-          transform: `translate(${(mousePos.x - 0.5) * -20}px, ${(mousePos.y - 0.5) * -20}px)`,
-          transition: "transform 0.8s ease-out",
-        }}
-      />
+      {/* ── Single clean overlay ─────────────────────────── */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/75" />
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
 
-      {/* ── Main content ─────────────────────────────────── */}
-      <div className="relative z-10 flex h-full flex-col justify-center px-8 sm:px-12 md:px-20 lg:px-28">
-        <div className="max-w-4xl">
+      {/* ── Content ──────────────────────────────────────── */}
+      <div className="relative z-10 flex h-full flex-col justify-end px-8 pb-24 sm:px-14 md:px-24 lg:px-32">
+        <div className="max-w-2xl">
 
-          {/* Brand wordmark */}
+          {/* Headline */}
           <div
             className="transition-all duration-[1800ms] ease-out"
             style={{
               opacity: stage >= 2 ? 1 : 0,
-              transform: stage >= 2 ? "translateY(0)" : "translateY(40px)",
+              transform: stage >= 2 ? "translateY(0)" : "translateY(32px)",
             }}
           >
-            <p
-              className="mb-6 font-sans font-light text-white/30"
-              style={{ fontSize: "0.65rem", letterSpacing: "0.5em", textTransform: "uppercase" }}
-            >
-              Exclusive Properties
-            </p>
-            
-            <h1 className="font-serif font-light text-white leading-[1.0]">
-              <span 
+            <h1 className="font-serif font-light leading-none text-white">
+              <span
                 className="block"
-                style={{ 
-                  fontSize: "clamp(2.2rem, 5.5vw, 5rem)", 
-                  letterSpacing: "0.18em",
-                }}
+                style={{ fontSize: "clamp(2.4rem, 5.5vw, 5.2rem)", letterSpacing: "0.15em" }}
               >
                 NAGHSHINEH
               </span>
-              <span 
-                className="block text-white/50 mt-2"
-                style={{ 
-                  fontSize: "clamp(1rem, 2.5vw, 2.2rem)", 
-                  letterSpacing: "0.35em",
-                }}
+              <span
+                className="block mt-2 text-white/45"
+                style={{ fontSize: "clamp(1rem, 2.2vw, 2rem)", letterSpacing: "0.38em" }}
               >
                 COLLECTION
               </span>
             </h1>
 
-            {/* Thin gold divider */}
-            <div 
-              className="mt-8 h-px bg-gradient-to-r from-[oklch(0.72_0.06_80/0.7)] to-transparent transition-all duration-[1400ms] ease-out"
-              style={{ 
-                width: stage >= 2 ? "80px" : "0px",
-                transitionDelay: "400ms",
+            {/* Divider */}
+            <div
+              className="mt-8 h-px bg-gradient-to-r from-[oklch(0.72_0.06_80/0.65)] to-transparent transition-all duration-[1600ms] ease-out"
+              style={{
+                width: stage >= 2 ? "60px" : "0px",
+                transitionDelay: "300ms",
               }}
             />
 
             {/* Estates Division */}
             <p
-              className="mt-6 font-sans font-light text-white/35"
-              style={{ fontSize: "0.6rem", letterSpacing: "0.45em", textTransform: "uppercase" }}
+              className="mt-5 font-sans font-light text-white/30"
+              style={{ fontSize: "0.58rem", letterSpacing: "0.45em", textTransform: "uppercase" }}
             >
-              Estates Division
+              Estates&nbsp;&nbsp;Division
             </p>
           </div>
 
-          {/* Subheadline */}
-          <p
-            className="mt-10 max-w-md font-sans font-light text-white/50 leading-relaxed transition-all duration-[1600ms] ease-out"
-            style={{
-              fontSize: "clamp(0.9rem, 1.4vw, 1.1rem)",
-              letterSpacing: "0.04em",
-              opacity: stage >= 3 ? 1 : 0,
-              transform: stage >= 3 ? "translateY(0)" : "translateY(30px)",
-            }}
-          >
-            Curated luxury estates across Iran and beyond.
-          </p>
-
-          {/* CTA Buttons */}
+          {/* Subline + Buttons */}
           <div
-            className="mt-16 flex flex-wrap items-center gap-6 transition-all duration-[1600ms] ease-out"
+            className="transition-all duration-[1800ms] ease-out"
             style={{
-              opacity: stage >= 4 ? 1 : 0,
-              transform: stage >= 4 ? "translateY(0)" : "translateY(25px)",
+              opacity: stage >= 3 ? 1 : 0,
+              transform: stage >= 3 ? "translateY(0)" : "translateY(24px)",
             }}
           >
-            {/* Primary button */}
-            <a
-              href="#properties"
-              className="group relative overflow-hidden border border-white/15 bg-gradient-to-br from-white/10 to-white/5 px-10 py-5 rounded-lg backdrop-blur-xl transition-all duration-500 hover:border-white/30 hover:bg-gradient-to-br hover:from-white/15 hover:to-white/10 hover:shadow-[0_20px_50px_rgba(255,255,255,0.08)]"
+            {/* Description */}
+            <p
+              className="mt-10 font-sans font-light text-white/40 leading-relaxed"
+              style={{ fontSize: "clamp(0.82rem, 1.2vw, 0.95rem)", letterSpacing: "0.05em", maxWidth: "30rem" }}
             >
-              <span 
-                className="relative z-10 block font-sans font-light text-white/85 transition-all duration-300 group-hover:text-white"
-                style={{ fontSize: "0.75rem", letterSpacing: "0.28em", textTransform: "uppercase" }}
-              >
-                Explore Estates
-              </span>
-              {/* Shimmer effect */}
-              <div className="absolute inset-0 -translate-x-full rounded-lg bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-            </a>
+              Curated luxury estates across Iran and beyond.
+            </p>
 
-            {/* Secondary button */}
-            <a
-              href="#contact"
-              className="group flex items-center gap-3 px-1 py-5 transition-all duration-300 hover:pl-2"
-            >
-              <span 
-                className="font-sans font-light text-white/45 transition-all duration-300 group-hover:text-white/80"
-                style={{ fontSize: "0.72rem", letterSpacing: "0.24em", textTransform: "uppercase" }}
+            {/* Buttons */}
+            <div className="mt-12 flex flex-wrap items-center gap-8">
+
+              {/* Primary */}
+              <a
+                href="#properties"
+                className="group relative overflow-hidden border border-white/18 px-9 py-4 backdrop-blur-sm transition-all duration-500 hover:border-white/35 hover:bg-white/5"
               >
-                Private Consultation
-              </span>
-              <span className="inline-block text-white/25 transition-all duration-300 group-hover:translate-x-2 group-hover:text-white/60">→</span>
-            </a>
+                <span
+                  className="relative z-10 font-sans font-light text-white/75 transition-colors duration-500 group-hover:text-white"
+                  style={{ fontSize: "0.68rem", letterSpacing: "0.3em", textTransform: "uppercase" }}
+                >
+                  Explore Estates
+                </span>
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/6 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              </a>
+
+              {/* Secondary */}
+              <a
+                href="#contact"
+                className="group flex items-center gap-4 transition-all duration-400"
+              >
+                <span
+                  className="font-sans font-light text-white/35 transition-colors duration-400 group-hover:text-white/65"
+                  style={{ fontSize: "0.65rem", letterSpacing: "0.28em", textTransform: "uppercase" }}
+                >
+                  Private Consultation
+                </span>
+                <span className="text-white/20 transition-all duration-400 group-hover:translate-x-1.5 group-hover:text-white/50">
+                  →
+                </span>
+              </a>
+
+            </div>
           </div>
         </div>
       </div>
 
-      {/* ── Floating statistics — bottom right ──────────── */}
+      {/* ── Scroll indicator ─────────────────────────────── */}
       <div
-        className="absolute bottom-28 right-8 z-10 hidden flex-col gap-8 md:right-20 lg:flex transition-all duration-[1600ms] ease-out"
-        style={{
-          opacity: stage >= 5 ? 1 : 0,
-          transform: stage >= 5 ? "translateY(0)" : "translateY(20px)",
-        }}
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 flex flex-col items-center gap-3 transition-all duration-[1600ms] ease-out"
+        style={{ opacity: stage >= 3 ? 0.5 : 0 }}
       >
-        {[
-          { value: "150+", label: "Exclusive Listings" },
-          { value: "$2.4B", label: "Portfolio Value" },
-          { value: "12", label: "Countries" },
-        ].map((stat, i) => (
-          <div 
-            key={stat.label}
-            className="border-l border-white/10 pl-5 transition-all duration-300 hover:border-[oklch(0.72_0.06_80/0.4)]"
-            style={{ transitionDelay: `${i * 100}ms` }}
-          >
-            <p 
-              className="font-serif font-light text-white/70"
-              style={{ fontSize: "1.6rem", letterSpacing: "0.05em" }}
-            >
-              {stat.value}
-            </p>
-            <p 
-              className="mt-1 font-sans font-light text-white/30"
-              style={{ fontSize: "0.55rem", letterSpacing: "0.2em", textTransform: "uppercase" }}
-            >
-              {stat.label}
-            </p>
-          </div>
-        ))}
-      </div>
-
-      {/* ── Scroll indicator ────────────────────────────── */}
-      <div
-        className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2 flex flex-col items-center gap-3 transition-all duration-[1400ms] ease-out"
-        style={{
-          opacity: stage >= 5 ? 1 : 0,
-          transform: stage >= 5 ? "translateY(0)" : "translateY(15px)",
-        }}
-      >
-        <span
-          className="font-sans text-white/25"
-          style={{ fontSize: "0.5rem", letterSpacing: "0.35em", textTransform: "uppercase" }}
-        >
-          Discover
-        </span>
-        <div className="h-12 w-px overflow-hidden bg-white/10">
+        <div className="h-10 w-px overflow-hidden bg-white/10">
           <div
-            className="h-full w-full bg-gradient-to-b from-[oklch(0.72_0.06_80/0.6)] to-white/20"
-            style={{
-              animation: stage >= 5 ? "scrollLine 2.5s ease-in-out infinite" : "none",
-            }}
+            className="h-full w-full bg-gradient-to-b from-white/60 to-transparent"
+            style={{ animation: "scrollLine 2.5s ease-in-out infinite" }}
           />
         </div>
       </div>
 
-      {/* ── Bottom edge line ────────────────────────────── */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
     </section>
   )
 }
