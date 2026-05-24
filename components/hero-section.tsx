@@ -114,12 +114,6 @@ export function HeroSection() {
           >
             Estates&nbsp;&nbsp;Division
           </p>
-          <p
-            className="font-sans font-light text-white/35 mt-3"
-            style={{ fontSize: "clamp(0.75rem, 1.4vw, 0.9rem)", letterSpacing: "0.06em" }}
-          >
-            مشاوره و انتخاب املاک لوکس و خاص
-          </p>
         </div>
       </div>
 
