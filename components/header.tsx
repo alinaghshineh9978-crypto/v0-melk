@@ -73,20 +73,22 @@ export function Header() {
         {/* Main header */}
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6" dir="ltr">
           {/* Logo — Left */}
-          <a href="#" className="flex flex-col">
+          <a href="#" className="flex flex-col gap-0.5">
             <span
-              className={`font-serif text-lg tracking-wide transition-colors ${
+              className={`font-serif font-light leading-none transition-colors ${
                 scrolled ? "text-foreground" : "text-white"
               }`}
+              style={{ fontSize: "0.95rem", letterSpacing: "0.22em" }}
             >
-              Naghshineh
+              NAGHSHINEH
             </span>
             <span
-              className={`text-[10px] tracking-[0.3em] transition-colors ${
-                scrolled ? "text-muted-foreground" : "text-white/70"
+              className={`font-sans font-light transition-colors ${
+                scrolled ? "text-muted-foreground" : "text-white/45"
               }`}
+              style={{ fontSize: "0.52rem", letterSpacing: "0.42em" }}
             >
-              ESTATES
+              COLLECTION&nbsp;·&nbsp;ESTATES
             </span>
           </a>
 

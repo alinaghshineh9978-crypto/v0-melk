@@ -53,57 +53,73 @@ export function HeroSection() {
       {/* ── Content — bottom-left editorial positioning ── */}
       <div className="absolute inset-0 z-10 flex flex-col justify-end px-8 pb-24 sm:px-14 sm:pb-28 md:px-20 md:pb-32">
 
-        {/* Brand name */}
-        <h1
-          className="font-serif font-light text-white leading-[1.05] transition-all duration-[1400ms] ease-out"
+        {/* Brand identity */}
+        <div
+          className="transition-all duration-[1400ms] ease-out"
           style={{
-            fontSize: "clamp(2.6rem, 7vw, 6.5rem)",
-            letterSpacing: "0.04em",
             opacity: stage >= 2 ? 1 : 0,
             transform: stage >= 2 ? "translateY(0)" : "translateY(22px)",
           }}
         >
-          Naghshineh
-          <br />
-          <span className="text-white/80">Collection</span>
-        </h1>
+          {/* Sub-label above */}
+          <p
+            className="font-sans font-light text-white/40 mb-4"
+            style={{ fontSize: "0.6rem", letterSpacing: "0.45em", textTransform: "uppercase" }}
+          >
+            Est. Collection
+          </p>
+
+          {/* Primary wordmark */}
+          <h1
+            className="font-serif font-light text-white leading-[0.95]"
+            style={{ fontSize: "clamp(2.8rem, 7.5vw, 7rem)", letterSpacing: "0.12em" }}
+          >
+            NAGHSHINEH
+          </h1>
+
+          {/* Secondary word — slightly smaller, offset right */}
+          <p
+            className="font-serif font-light text-white/55 mt-1"
+            style={{
+              fontSize: "clamp(1.2rem, 3vw, 2.8rem)",
+              letterSpacing: "0.28em",
+              paddingLeft: "0.18em",
+            }}
+          >
+            COLLECTION
+          </p>
+        </div>
 
         {/* Gold divider */}
         <div
-          className="mt-6 mb-6 h-px bg-gradient-to-r from-[oklch(0.72_0.06_80/0.8)] via-[oklch(0.72_0.06_80/0.4)] to-transparent transition-all duration-[1200ms] ease-out"
+          className="mt-7 mb-6 h-px bg-gradient-to-r from-[oklch(0.72_0.06_80/0.8)] via-[oklch(0.72_0.06_80/0.35)] to-transparent transition-all duration-[1200ms] ease-out"
           style={{
-            width: stage >= 3 ? "6rem" : "0rem",
+            width: stage >= 3 ? "5rem" : "0rem",
             opacity: stage >= 3 ? 1 : 0,
           }}
         />
 
-        {/* Persian tagline */}
-        <p
-          className="font-sans font-light text-white/60 transition-all duration-[1400ms] ease-out"
+        {/* Estates Division — editorial tagline */}
+        <div
+          className="transition-all duration-[1400ms] ease-out"
           style={{
-            fontSize: "clamp(0.8rem, 1.6vw, 1.05rem)",
-            letterSpacing: "0.08em",
             opacity: stage >= 4 ? 1 : 0,
             transform: stage >= 4 ? "translateY(0)" : "translateY(14px)",
           }}
         >
-          مشاوره و انتخاب املاک لوکس و خاص
-        </p>
-
-        {/* Estates label */}
-        <p
-          className="mt-1 font-sans font-light text-white/35 transition-all duration-[1400ms] ease-out"
-          style={{
-            fontSize: "0.65rem",
-            letterSpacing: "0.32em",
-            textTransform: "uppercase",
-            opacity: stage >= 4 ? 1 : 0,
-            transform: stage >= 4 ? "translateY(0)" : "translateY(14px)",
-            transitionDelay: "120ms",
-          }}
-        >
-          Estates Division
-        </p>
+          <p
+            className="font-sans font-light text-white/45"
+            style={{ fontSize: "0.62rem", letterSpacing: "0.38em", textTransform: "uppercase" }}
+          >
+            Estates&nbsp;&nbsp;Division
+          </p>
+          <p
+            className="font-sans font-light text-white/35 mt-3"
+            style={{ fontSize: "clamp(0.75rem, 1.4vw, 0.9rem)", letterSpacing: "0.06em" }}
+          >
+            مشاوره و انتخاب املاک لوکس و خاص
+          </p>
+        </div>
       </div>
 
       {/* ── Scroll indicator ──────────────────────────── */}
