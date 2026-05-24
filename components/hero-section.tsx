@@ -179,7 +179,7 @@ export function HeroSection() {
 
           {/* CTA Buttons */}
           <div
-            className="mt-12 flex flex-wrap items-center gap-5 transition-all duration-[1600ms] ease-out"
+            className="mt-16 flex flex-wrap items-center gap-6 transition-all duration-[1600ms] ease-out"
             style={{
               opacity: stage >= 4 ? 1 : 0,
               transform: stage >= 4 ? "translateY(0)" : "translateY(25px)",
@@ -188,29 +188,30 @@ export function HeroSection() {
             {/* Primary button */}
             <a
               href="#properties"
-              className="group relative overflow-hidden border border-white/20 bg-white/[0.03] px-8 py-4 backdrop-blur-sm transition-all duration-500 hover:border-[oklch(0.72_0.06_80/0.5)] hover:bg-white/[0.06]"
+              className="group relative overflow-hidden border border-white/15 bg-gradient-to-br from-white/10 to-white/5 px-10 py-5 rounded-lg backdrop-blur-xl transition-all duration-500 hover:border-white/30 hover:bg-gradient-to-br hover:from-white/15 hover:to-white/10 hover:shadow-[0_20px_50px_rgba(255,255,255,0.08)]"
             >
               <span 
-                className="relative z-10 font-sans font-light text-white/80 transition-colors duration-300 group-hover:text-white"
-                style={{ fontSize: "0.7rem", letterSpacing: "0.25em", textTransform: "uppercase" }}
+                className="relative z-10 block font-sans font-light text-white/85 transition-all duration-300 group-hover:text-white"
+                style={{ fontSize: "0.75rem", letterSpacing: "0.28em", textTransform: "uppercase" }}
               >
                 Explore Estates
               </span>
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              {/* Shimmer effect */}
+              <div className="absolute inset-0 -translate-x-full rounded-lg bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
             </a>
 
             {/* Secondary button */}
             <a
               href="#contact"
-              className="group px-2 py-4 transition-all duration-300"
+              className="group flex items-center gap-3 px-1 py-5 transition-all duration-300 hover:pl-2"
             >
               <span 
-                className="font-sans font-light text-white/40 transition-colors duration-300 group-hover:text-white/70"
-                style={{ fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase" }}
+                className="font-sans font-light text-white/45 transition-all duration-300 group-hover:text-white/80"
+                style={{ fontSize: "0.72rem", letterSpacing: "0.24em", textTransform: "uppercase" }}
               >
                 Private Consultation
               </span>
-              <span className="ml-3 inline-block text-white/30 transition-all duration-300 group-hover:translate-x-1 group-hover:text-white/50">→</span>
+              <span className="inline-block text-white/25 transition-all duration-300 group-hover:translate-x-2 group-hover:text-white/60">→</span>
             </a>
           </div>
         </div>
