@@ -57,7 +57,7 @@ export function HeroSection() {
           fill
           className="object-cover object-center"
           style={{
-            filter: "brightness(0.55) contrast(1.05) saturate(0.9)",
+            filter: "brightness(0.5) contrast(1.08) saturate(0.75)",
           }}
           priority
         />
