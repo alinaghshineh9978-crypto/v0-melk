@@ -4,75 +4,129 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 
 export function HeroSection() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [stage, setStage] = useState(0)
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100)
-    return () => clearTimeout(timer)
+    // Staggered reveal: image first, then each text layer
+    const t1 = setTimeout(() => setStage(1), 200)   // image + overlay
+    const t2 = setTimeout(() => setStage(2), 900)   // brand name
+    const t3 = setTimeout(() => setStage(3), 1500)  // divider
+    const t4 = setTimeout(() => setStage(4), 1900)  // tagline
+    const t5 = setTimeout(() => setStage(5), 2500)  // scroll indicator
+    return () => [t1, t2, t3, t4, t5].forEach(clearTimeout)
   }, [])
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
-      {/* Background Image with Blur Effect */}
-      <div className="absolute inset-0">
+    <section className="relative h-screen min-h-[600px] w-full overflow-hidden bg-black">
+
+      {/* ── Background image ───────────────────────────── */}
+      <div
+        className="absolute inset-0 transition-opacity duration-[2000ms] ease-in-out"
+        style={{ opacity: stage >= 1 ? 1 : 0 }}
+      >
         <Image
           src="/images/hero-bg.jpg"
           alt="Luxury Architecture"
           fill
-          className="object-cover"
+          className="object-cover object-center scale-[1.04]"
+          style={{
+            filter: "blur(0.5px) brightness(0.72)",
+            transition: "transform 8s ease-out",
+          }}
           priority
         />
-        <div className="absolute inset-0 bg-foreground/30 backdrop-blur-[2px]" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6">
-        <div
-          className={`text-center transition-all duration-1000 ease-out ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-          }`}
-        >
-          {/* Main Title */}
-          <h1 className="mb-2 font-serif text-3xl font-light tracking-wide text-white xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
-            Naghshineh Collection
-          </h1>
-          
-          {/* Subtitle */}
-          <p
-            className={`mb-6 font-serif text-lg font-light tracking-[0.2em] text-white/90 xs:text-xl sm:text-2xl md:text-3xl sm:tracking-[0.3em] sm:mb-8 transition-all duration-1000 delay-200 ease-out ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
-          >
-            Estates Division
-          </p>
+      {/* ── Layered overlays for cinematic depth ────────── */}
+      {/* Base dark veil */}
+      <div className="absolute inset-0 bg-black/55" />
+      {/* Bottom atmospheric fog */}
+      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      {/* Top vignette */}
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/50 to-transparent" />
+      {/* Side vignettes */}
+      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black/30 to-transparent" />
+      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black/30 to-transparent" />
+      {/* Warm gold atmospheric bloom — bottom right */}
+      <div className="absolute bottom-0 right-0 h-96 w-96 bg-[oklch(0.72_0.06_80/0.06)] blur-3xl" />
 
-          {/* Decorative Line */}
+      {/* ── Content — bottom-left editorial positioning ── */}
+      <div className="absolute inset-0 z-10 flex flex-col justify-end px-8 pb-24 sm:px-14 sm:pb-28 md:px-20 md:pb-32">
+
+        {/* Brand name */}
+        <h1
+          className="font-serif font-light text-white leading-[1.05] transition-all duration-[1400ms] ease-out"
+          style={{
+            fontSize: "clamp(2.6rem, 7vw, 6.5rem)",
+            letterSpacing: "0.04em",
+            opacity: stage >= 2 ? 1 : 0,
+            transform: stage >= 2 ? "translateY(0)" : "translateY(22px)",
+          }}
+        >
+          Naghshineh
+          <br />
+          <span className="text-white/80">Collection</span>
+        </h1>
+
+        {/* Gold divider */}
+        <div
+          className="mt-6 mb-6 h-px bg-gradient-to-r from-[oklch(0.72_0.06_80/0.8)] via-[oklch(0.72_0.06_80/0.4)] to-transparent transition-all duration-[1200ms] ease-out"
+          style={{
+            width: stage >= 3 ? "6rem" : "0rem",
+            opacity: stage >= 3 ? 1 : 0,
+          }}
+        />
+
+        {/* Persian tagline */}
+        <p
+          className="font-sans font-light text-white/60 transition-all duration-[1400ms] ease-out"
+          style={{
+            fontSize: "clamp(0.8rem, 1.6vw, 1.05rem)",
+            letterSpacing: "0.08em",
+            opacity: stage >= 4 ? 1 : 0,
+            transform: stage >= 4 ? "translateY(0)" : "translateY(14px)",
+          }}
+        >
+          مشاوره و انتخاب املاک لوکس و خاص
+        </p>
+
+        {/* Estates label */}
+        <p
+          className="mt-1 font-sans font-light text-white/35 transition-all duration-[1400ms] ease-out"
+          style={{
+            fontSize: "0.65rem",
+            letterSpacing: "0.32em",
+            textTransform: "uppercase",
+            opacity: stage >= 4 ? 1 : 0,
+            transform: stage >= 4 ? "translateY(0)" : "translateY(14px)",
+            transitionDelay: "120ms",
+          }}
+        >
+          Estates Division
+        </p>
+      </div>
+
+      {/* ── Scroll indicator ──────────────────────────── */}
+      <div
+        className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2 flex flex-col items-center gap-2 transition-all duration-[1200ms] ease-out"
+        style={{
+          opacity: stage >= 5 ? 1 : 0,
+          transform: stage >= 5 ? "translateY(0)" : "translateY(10px)",
+        }}
+      >
+        <span
+          className="text-white/40"
+          style={{ fontSize: "0.6rem", letterSpacing: "0.28em" }}
+        >
+          SCROLL
+        </span>
+        <div className="h-10 w-px overflow-hidden bg-white/15">
           <div
-            className={`mx-auto mb-6 h-px w-16 bg-accent sm:mb-8 sm:w-24 transition-all duration-1000 delay-400 ease-out ${
-              isVisible ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"
-            }`}
+            className="h-full w-full bg-white/50"
+            style={{
+              animation: stage >= 5 ? "scrollLine 2s ease-in-out infinite" : "none",
+            }}
           />
-
-          {/* Tagline in Persian */}
-          <p
-            className={`font-sans text-sm font-light leading-relaxed tracking-wide text-white/80 px-4 sm:text-base sm:px-0 md:text-lg lg:text-xl transition-all duration-1000 delay-500 ease-out ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
-          >
-            مشاوره و انتخاب املاک لوکس و خاص
-          </p>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div
-          className={`absolute bottom-8 left-1/2 -translate-x-1/2 sm:bottom-12 transition-all duration-1000 delay-700 ease-out ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-          }`}
-        >
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-[10px] tracking-[0.2em] text-white/60 sm:text-xs">اسکرول</span>
-            <div className="h-8 w-px animate-pulse bg-white/40 sm:h-12" />
-          </div>
         </div>
       </div>
     </section>
