@@ -35,6 +35,17 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/75" />
       <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
 
+      {/* ── Cinematic light reflection ───────────────────── */}
+      <div
+        aria-hidden="true"
+        className="hero-light-reflection pointer-events-none absolute inset-y-0 left-0 w-[40%]"
+        style={{
+          background:
+            "linear-gradient(105deg, transparent 0%, rgba(255,251,240,0.028) 40%, rgba(255,251,240,0.05) 50%, rgba(255,251,240,0.028) 60%, transparent 100%)",
+          filter: "blur(28px)",
+        }}
+      />
+
       {/* ── Content — centered ───────────────────────────── */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-8 text-center">
 
