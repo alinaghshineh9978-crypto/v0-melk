@@ -49,8 +49,8 @@ const categories = [
     subtitle: "Strategic luxury asset investments",
     icon: (
       <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-        <line x1="12" y1="1" x2="12" y2="23" />
-        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+        <path d="M6 9h12M6 9L5 19c0 1 .9 2 2 2h10c1.1 0 2-.9 2-2l-1-10M6 9h12M12 5v4M10 12h4M9 16h6" />
+        <circle cx="12" cy="8" r="2" />
       </svg>
     ),
   },
