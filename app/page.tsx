@@ -2,6 +2,7 @@ import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { FeaturedProperties } from "@/components/featured-properties"
 import { CategorySection } from "@/components/category-section"
+import { ProjectsSection } from "@/components/projects-section"
 import { AboutSection } from "@/components/about-section"
 import { ServicesSection } from "@/components/services-section"
 import { ContactSection } from "@/components/contact-section"
@@ -22,6 +23,9 @@ export default function Home() {
 
       {/* Category Section */}
       <CategorySection />
+
+      {/* Signature Projects */}
+      <ProjectsSection />
 
       {/* About the Brand Section */}
       <section id="about">
