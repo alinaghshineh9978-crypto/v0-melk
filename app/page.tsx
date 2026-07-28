@@ -1,6 +1,9 @@
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { FeaturedProperties } from "@/components/featured-properties"
+import { CategorySection } from "@/components/category-section"
+import { ProjectsSection } from "@/components/projects-section"
+import { PhilosophySection } from "@/components/philosophy-section"
 import { AboutSection } from "@/components/about-section"
 import { ServicesSection } from "@/components/services-section"
 import { ContactSection } from "@/components/contact-section"
@@ -18,6 +21,15 @@ export default function Home() {
       <section id="properties">
         <FeaturedProperties />
       </section>
+
+      {/* Category Section */}
+      <CategorySection />
+
+      {/* Signature Projects */}
+      <ProjectsSection />
+
+      {/* Brand Philosophy */}
+      <PhilosophySection />
 
       {/* About the Brand Section */}
       <section id="about">

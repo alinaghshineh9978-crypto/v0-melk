@@ -1,0 +1,188 @@
+"use client"
+
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+
+export function ScheduleVisitModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const router = useRouter()
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    day: "",
+    message: "",
+    agreed: false,
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value, type } = e.target as HTMLInputElement
+    if (type === "checkbox") {
+      setFormData((prev) => ({ ...prev, agreed: (e.target as HTMLInputElement).checked }))
+    } else {
+      setFormData((prev) => ({ ...prev, [id]: value }))
+    }
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log("Form submitted:", formData)
+    if (formData.agreed) {
+      setFormData({ name: "", phone: "", day: "", message: "", agreed: false })
+      onClose()
+      router.push("/#properties")
+    }
+  }
+
+  if (!isOpen) return null
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity"
+        onClick={onClose}
+      />
+
+      {/* Modal */}
+      <div 
+        className="fixed left-1/2 top-1/2 z-50 w-[90vw] max-h-[90vh] max-w-xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto bg-background p-8 sm:p-10 md:p-12"
+        style={{
+          boxShadow: '0 0 80px 0 oklch(0.72 0.06 80 / 0.15), 0 0 0 1px oklch(0.72 0.06 80 / 0.25)',
+        }}
+      >
+        {/* Gold accent line - top */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+        
+        {/* Corner accents - Top Left */}
+        <div className="absolute left-6 top-6 h-3 w-px bg-accent/50" />
+        <div className="absolute left-6 top-6 h-px w-3 bg-accent/50" />
+        
+        {/* Corner accents - Top Right */}
+        <div className="absolute right-6 top-6 h-3 w-px bg-accent/50" />
+        <div className="absolute right-6 top-6 h-px w-3 bg-accent/50" />
+        
+        {/* Corner accents - Bottom Left */}
+        <div className="absolute left-6 bottom-6 h-3 w-px bg-accent/50" />
+        <div className="absolute left-6 bottom-6 h-px w-3 bg-accent/50" />
+        
+        {/* Corner accents - Bottom Right */}
+        <div className="absolute right-6 bottom-6 h-3 w-px bg-accent/50" />
+        <div className="absolute right-6 bottom-6 h-px w-3 bg-accent/50" />
+
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute right-6 top-6 sm:right-8 sm:top-8 z-10 flex h-8 w-8 items-center justify-center border border-accent/20 text-muted-foreground hover:text-accent hover:border-accent/50 transition-colors"
+        >
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* Header */}
+        <div className="mb-12 md:mb-14 pr-6">
+          <h2 className="font-sans text-2xl font-light text-foreground sm:text-3xl md:text-4xl leading-relaxed">
+            هماهنگی جلسه بازدید
+          </h2>
+          <div className="mt-6 h-px w-12 bg-accent" />
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+          {/* Name Input */}
+          <div>
+            <label htmlFor="name" className="block font-sans text-xs font-light text-muted-foreground mb-3 leading-relaxed">
+              نام و نام خانوادگی
+            </label>
+            <input
+              type="text"
+              id="name"
+              placeholder="نام شما را وارد کنید"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full font-sans font-light border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
+              required
+            />
+          </div>
+
+          {/* Phone Input */}
+          <div>
+            <label htmlFor="phone" className="block font-sans text-xs font-light text-muted-foreground mb-3 leading-relaxed">
+              شماره تماس
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              placeholder="۰۹۱۲ ۳۳۳ ۳۳۳۳"
+              value={formData.phone}
+              onChange={handleChange}
+              className="w-full font-sans font-light border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
+              dir="ltr"
+              required
+            />
+          </div>
+
+          {/* Date - Single Input */}
+          <div>
+            <label htmlFor="date" className="block font-sans text-xs font-light text-muted-foreground mb-3 leading-relaxed">
+              تاریخ بازدید
+            </label>
+            <input
+              type="date"
+              id="date"
+              value={formData.day}
+              onChange={(e) => setFormData({ ...formData, day: e.target.value })}
+              className="w-full font-sans font-light border-b border-border bg-transparent px-0 py-3 text-sm text-foreground transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4"
+              required
+            />
+          </div>
+
+          {/* Message */}
+          <div>
+            <label htmlFor="message" className="block font-sans text-xs font-light text-muted-foreground mb-3 leading-relaxed">
+              پیام (اختیاری)
+            </label>
+            <textarea
+              id="message"
+              placeholder="نظر یا سوال خود را بنویسید..."
+              rows={2}
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full font-sans font-light border-b border-border bg-transparent px-0 py-3 text-sm text-foreground placeholder-muted-foreground/50 transition-colors focus:border-accent focus:outline-none focus:shadow-none sm:py-4 resize-none"
+            />
+          </div>
+
+          {/* Agreement Checkbox */}
+          <div className="flex gap-3 pt-4">
+            <input
+              type="checkbox"
+              id="agreed"
+              checked={formData.agreed}
+              onChange={handleChange}
+              className="mt-1 h-4 w-4 min-w-4 border border-border bg-background cursor-pointer accent-accent flex-shrink-0"
+              required
+            />
+            <label htmlFor="agreed" className="font-sans text-xs font-light text-muted-foreground cursor-pointer leading-loose">
+              من شرایط و ضوابط را می‌پذیرم و آماده بازدید ملک هستم
+            </label>
+          </div>
+
+          {/* Submit Button */}
+          <div className="pt-4">
+            <button
+              type="submit"
+              disabled={!formData.agreed}
+              className="w-full font-sans font-light border border-accent bg-accent py-4 text-sm text-white transition-all hover:bg-accent/90 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              تأیید و هماهنگی جلسه
+            </button>
+          </div>
+        </form>
+
+        {/* Info Text */}
+        <p className="mt-8 text-center font-sans text-xs font-light text-muted-foreground leading-loose sm:mt-10">
+          ما تا ۲ ساعت بعد برای هماهنگی دقیق‌تر تماس خواهیم گرفت
+        </p>
+      </div>
+    </>
+  )
+}

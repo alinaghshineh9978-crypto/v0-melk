@@ -38,26 +38,45 @@ export function Header() {
       <header
         className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-background/95 py-4 shadow-sm backdrop-blur-sm"
+            ? "bg-black/40 backdrop-blur-xl border-b border-white/10 py-4 shadow-[0_1px_40px_rgba(0,0,0,0.3)]"
             : "bg-transparent py-6"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
-          {/* Logo */}
-          <a href="#" className="flex flex-col">
+        {/* Top auth bar — desktop only */}
+        <div className={`hidden md:flex items-center justify-end px-6 pb-3 border-b transition-colors duration-500 ${scrolled ? "border-white/10" : "border-white/10"}`}>
+          <div className="mx-auto flex max-w-7xl w-full items-center justify-end">
+            <div className="flex items-center gap-4">
+              <a
+                href="/login"
+                className="text-xs tracking-[0.15em] text-white/70 hover:text-white transition-colors"
+              >
+                ورود
+              </a>
+              <a
+                href="/signup"
+                className="px-3 py-1.5 text-xs tracking-[0.15em] border border-white/25 text-white/80 hover:bg-white/10 hover:border-white/40 hover:text-white transition-all backdrop-blur-sm"
+              >
+                ثبت‌نام
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Main header */}
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6" dir="ltr">
+          {/* Logo — Left */}
+          <a href="#" className="flex flex-col gap-0.5">
             <span
-              className={`font-serif text-lg tracking-wide transition-colors ${
-                scrolled ? "text-foreground" : "text-white"
-              }`}
+              className="font-serif font-light leading-none text-white transition-colors"
+              style={{ fontSize: "0.95rem", letterSpacing: "0.22em" }}
             >
-              Naghshineh
+              NAGHSHINEH
             </span>
             <span
-              className={`text-[10px] tracking-[0.3em] transition-colors ${
-                scrolled ? "text-muted-foreground" : "text-white/70"
-              }`}
+              className="font-sans font-light text-white/40 transition-colors"
+              style={{ fontSize: "0.52rem", letterSpacing: "0.42em" }}
             >
-              ESTATES
+              COLLECTION&nbsp;·&nbsp;ESTATES
             </span>
           </a>
 
@@ -71,17 +90,12 @@ export function Header() {
               onMouseLeave={() => setDropdownOpen(false)}
             >
               <button
-                className={`flex items-center gap-1.5 text-xs tracking-[0.15em] transition-colors ${
-                  scrolled
-                    ? "text-foreground hover:text-accent"
-                    : "text-white/90 hover:text-white"
-                }`}
+                className="flex items-center gap-1.5 text-xs tracking-[0.15em] text-white/70 hover:text-white transition-colors"
                 onClick={() => setDropdownOpen((v) => !v)}
                 aria-expanded={dropdownOpen}
                 aria-haspopup="true"
               >
                 <a href="#properties">املاک</a>
-                {/* Chevron */}
                 <svg
                   className={`h-3 w-3 transition-transform duration-300 ${
                     dropdownOpen ? "rotate-180" : ""
@@ -103,23 +117,13 @@ export function Header() {
                     : "pointer-events-none -translate-y-1 opacity-0"
                 }`}
               >
-                <div
-                  className={`min-w-[120px] border py-2 ${
-                    scrolled
-                      ? "border-border bg-background"
-                      : "border-white/20 bg-black/70 backdrop-blur-md"
-                  }`}
-                >
+                <div className="min-w-[120px] border border-white/15 bg-black/60 backdrop-blur-xl py-2">
                   {propertySubLinks.map((sub) => (
                     <a
                       key={sub.label}
                       href={sub.href}
                       onClick={() => setDropdownOpen(false)}
-                      className={`block px-5 py-2.5 text-xs tracking-[0.1em] transition-colors ${
-                        scrolled
-                          ? "text-foreground hover:text-accent hover:bg-muted/50"
-                          : "text-white/80 hover:text-white hover:bg-white/10"
-                      }`}
+                      className="block px-5 py-2.5 text-xs tracking-[0.1em] text-white/65 hover:text-white hover:bg-white/8 transition-colors"
                     >
                       {sub.label}
                     </a>
@@ -128,62 +132,27 @@ export function Header() {
               </div>
             </div>
 
-            <a
-              href="#about"
-              className={`text-xs tracking-[0.15em] transition-colors ${
-                scrolled
-                  ? "text-foreground hover:text-accent"
-                  : "text-white/90 hover:text-white"
-              }`}
-            >
+            <a href="#about" className="text-xs tracking-[0.15em] text-white/70 hover:text-white transition-colors">
               درباره ما
             </a>
-            <a
-              href="#services"
-              className={`text-xs tracking-[0.15em] transition-colors ${
-                scrolled
-                  ? "text-foreground hover:text-accent"
-                  : "text-white/90 hover:text-white"
-              }`}
-            >
+            <a href="#services" className="text-xs tracking-[0.15em] text-white/70 hover:text-white transition-colors">
               خدمات
             </a>
-            <a
-              href="#contact"
-              className={`text-xs tracking-[0.15em] transition-colors ${
-                scrolled
-                  ? "text-foreground hover:text-accent"
-                  : "text-white/90 hover:text-white"
-              }`}
-            >
+            <a href="#contact" className="text-xs tracking-[0.15em] text-white/70 hover:text-white transition-colors">
               تماس
             </a>
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button — Right */}
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className={`flex h-12 w-12 items-center justify-center md:hidden ${
-              scrolled ? "text-foreground" : "text-white"
-            }`}
+            onClick={() => setMenuOpen((v) => !v)}
+            className="flex h-12 w-12 items-center justify-center text-white md:hidden"
             aria-label="باز کردن منو"
           >
             <div className="flex flex-col gap-1.5">
-              <span
-                className={`block h-px w-6 transition-all duration-300 ${
-                  menuOpen ? "translate-y-[7px] rotate-45" : ""
-                } ${scrolled ? "bg-foreground" : "bg-white"}`}
-              />
-              <span
-                className={`block h-px w-6 transition-all duration-300 ${
-                  menuOpen ? "opacity-0" : ""
-                } ${scrolled ? "bg-foreground" : "bg-white"}`}
-              />
-              <span
-                className={`block h-px w-6 transition-all duration-300 ${
-                  menuOpen ? "-translate-y-[7px] -rotate-45" : ""
-                } ${scrolled ? "bg-foreground" : "bg-white"}`}
-              />
+              <span className={`block h-px w-6 bg-white transition-all duration-300 ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`} />
+              <span className={`block h-px w-6 bg-white transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+              <span className={`block h-px w-6 bg-white transition-all duration-300 ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`} />
             </div>
           </button>
         </div>
@@ -237,8 +206,26 @@ export function Header() {
             </div>
           </div>
 
+          {/* Auth buttons for mobile — top of menu */}
+          <div className="flex flex-col items-center gap-3 mb-6">
+            <a
+              href="/login"
+              onClick={() => setMenuOpen(false)}
+              className="text-sm font-light text-foreground transition-colors hover:text-accent active:text-accent"
+            >
+              ورود
+            </a>
+            <a
+              href="/signup"
+              onClick={() => setMenuOpen(false)}
+              className="px-6 py-2 border border-accent bg-accent text-white text-xs tracking-[0.15em] transition-all hover:bg-accent/90"
+            >
+              ثبت‌نام
+            </a>
+          </div>
+
           {/* Thin divider */}
-          <div className="h-px w-16 bg-border" />
+          <div className="h-px w-16 bg-border mb-6" />
 
           <a
             href="#about"
@@ -261,6 +248,9 @@ export function Header() {
           >
             تماس
           </a>
+
+          {/* Thin divider */}
+          <div className="h-px w-16 bg-border mt-4" />
         </nav>
       </div>
     </>

@@ -9,11 +9,11 @@ const playfair = Playfair_Display({
   display: 'swap',
 })
 
-const vazirmatn = Vazirmatn({ 
+const vazirmatn = Vazirmatn({
   subsets: ['arabic'],
   variable: '--font-vazirmatn',
   display: 'swap',
-  weight: ['300', '400', '500'],
+  weight: ['300', '400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {

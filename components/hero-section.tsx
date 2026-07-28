@@ -4,114 +4,133 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 
 export function HeroSection() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [stage, setStage] = useState(0)
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100)
-    return () => clearTimeout(timer)
+    const t1 = setTimeout(() => setStage(1), 200)   // image
+    const t2 = setTimeout(() => setStage(2), 900)   // headline
+    const t3 = setTimeout(() => setStage(3), 1700)  // sub + buttons
+    return () => [t1, t2, t3].forEach(clearTimeout)
   }, [])
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
+    <section className="relative h-[92vh] md:h-screen min-h-[620px] w-full overflow-hidden bg-[#0a0a0a]">
 
-      {/* Layer 1 — blurred depth background */}
-      <div className="absolute inset-0 scale-125">
+      {/* ── Background ───────────────────────────────────── */}
+      <div
+        className="absolute inset-0 transition-opacity duration-[2800ms] ease-out"
+        style={{ opacity: stage >= 1 ? 1 : 0 }}
+      >
         <Image
           src="/images/hero-bg.jpg"
-          alt=""
+          alt="Naghshineh Collection — Luxury Estate"
           fill
-          className="object-cover blur-2xl brightness-50"
-          priority
-          aria-hidden="true"
-        />
-      </div>
-
-      {/* Layer 2 — sharp image for depth */}
-      <div className="absolute inset-0">
-        <Image
-          src="/images/hero-bg.jpg"
-          alt="Luxury property at golden hour"
-          fill
-          className="object-cover opacity-60"
+          className="object-cover object-center"
+          style={{ filter: "brightness(0.42) saturate(0.7) contrast(1.06)" }}
           priority
         />
       </div>
 
-      {/* Layer 3 — cinematic gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/80" />
+      {/* ── Single clean overlay ─────────────────────────── */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/75" />
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
 
-      {/* Content */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6">
-        <div className="text-center">
-          {/* Brand label */}
-          <p
-            className={`mb-4 text-xs tracking-[0.35em] text-white/50 uppercase transition-all duration-1000 delay-100 ease-out ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-            }`}
+      {/* ── Cinematic light reflection ───────────────────── */}
+      <div
+        aria-hidden="true"
+        className="hero-light-reflection pointer-events-none absolute inset-y-0 left-0 w-[40%]"
+        style={{
+          background:
+            "linear-gradient(105deg, transparent 0%, rgba(255,251,240,0.028) 40%, rgba(255,251,240,0.05) 50%, rgba(255,251,240,0.028) 60%, transparent 100%)",
+          filter: "blur(28px)",
+        }}
+      />
+
+      {/* ── Content — centered ───────────────────────────── */}
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-8 text-center">
+
+        {/* Stage 2 — Headline block */}
+        <div
+          className="transition-all duration-[1800ms] ease-out"
+          style={{
+            opacity: stage >= 2 ? 1 : 0,
+            transform: stage >= 2 ? "translateY(0)" : "translateY(32px)",
+          }}
+        >
+          {/* Main title */}
+          <h1
+            className="font-serif font-light text-white leading-[1.1] uppercase"
+            style={{ fontSize: "clamp(2.2rem, 5vw, 4.6rem)", letterSpacing: "0.18em" }}
           >
             Naghshineh Collection
-          </p>
-
-          {/* Main Persian headline */}
-          <h1
-            className={`font-sans text-4xl font-light leading-tight text-white xs:text-5xl sm:text-6xl md:text-7xl transition-all duration-1000 delay-200 ease-out ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
-          >
-            املاک لوکس
-            <br />
-            <span className="text-white/60">در اوج انتخاب</span>
           </h1>
 
-          {/* Decorative gold line */}
-          <div
-            className={`mx-auto my-6 h-px w-16 bg-accent sm:my-8 sm:w-24 transition-all duration-1000 delay-400 ease-out ${
-              isVisible ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0"
-            }`}
-          />
+          {/* Gold rule */}
+          <div className="mx-auto mt-8 mb-8 h-px w-16 bg-gradient-to-r from-transparent via-[oklch(0.72_0.06_80/0.7)] to-transparent" />
 
-          {/* Persian tagline */}
+          {/* Subline */}
           <p
-            className={`font-sans text-sm font-light leading-relaxed text-white/60 px-4 sm:text-base sm:px-0 transition-all duration-1000 delay-500 ease-out ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-            }`}
+            className="font-sans font-light text-white/45 uppercase"
+            style={{ fontSize: "0.65rem", letterSpacing: "0.48em" }}
           >
-            مشاوره و انتخاب املاک لوکس و خاص
+            Estates&nbsp;&nbsp;Division
           </p>
-
-          {/* CTA buttons */}
-          <div
-            className={`mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4 transition-all duration-1000 delay-600 ease-out ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-            }`}
-          >
-            <a
-              href="#properties"
-              className="w-full max-w-[180px] bg-white px-6 py-3 text-center text-xs tracking-[0.15em] text-foreground transition-colors hover:bg-white/90 active:bg-white/80 sm:w-auto"
-            >
-              مشاهده فایل‌ها
-            </a>
-            <a
-              href="#contact"
-              className="w-full max-w-[180px] border border-white/30 px-6 py-3 text-center text-xs tracking-[0.15em] text-white transition-colors hover:bg-white/10 active:bg-white/20 sm:w-auto"
-            >
-              تماس با مشاور
-            </a>
-          </div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Stage 3 — Buttons */}
         <div
-          className={`absolute bottom-8 left-1/2 -translate-x-1/2 sm:bottom-12 transition-all duration-1000 delay-700 ease-out ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-          }`}
+          className="mt-16 flex flex-wrap items-center justify-center gap-8 transition-all duration-[1800ms] ease-out"
+          style={{
+            opacity: stage >= 3 ? 1 : 0,
+            transform: stage >= 3 ? "translateY(0)" : "translateY(20px)",
+          }}
         >
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-[10px] tracking-[0.2em] text-white/40 sm:text-xs">اسکرول</span>
-            <div className="h-8 w-px animate-pulse bg-white/30 sm:h-12" />
-          </div>
+          {/* Primary */}
+          <a
+            href="#properties"
+            className="group relative overflow-hidden border border-white/18 px-10 py-4 backdrop-blur-sm transition-all duration-500 hover:border-white/35 hover:bg-white/5"
+          >
+            <span
+              className="relative z-10 font-sans font-light text-white/75 transition-colors duration-500 group-hover:text-white"
+              style={{ fontSize: "0.68rem", letterSpacing: "0.3em", textTransform: "uppercase" }}
+            >
+              Explore Estates
+            </span>
+            <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/6 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+          </a>
+
+          {/* Secondary */}
+          <a
+            href="#contact"
+            className="group flex items-center gap-4 transition-all duration-500"
+          >
+            <span
+              className="font-sans font-light text-white/35 uppercase transition-colors duration-500 group-hover:text-white/65"
+              style={{ fontSize: "0.65rem", letterSpacing: "0.28em" }}
+            >
+              Private Consultation
+            </span>
+            <span className="text-white/20 transition-all duration-500 group-hover:translate-x-2 group-hover:text-white/50">
+              →
+            </span>
+          </a>
+        </div>
+
+      </div>
+
+      {/* ── Scroll indicator ─────────────────────────────── */}
+      <div
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 flex flex-col items-center gap-3 transition-all duration-[1600ms] ease-out"
+        style={{ opacity: stage >= 3 ? 0.5 : 0 }}
+      >
+        <div className="h-10 w-px overflow-hidden bg-white/10">
+          <div
+            className="h-full w-full bg-gradient-to-b from-white/60 to-transparent"
+            style={{ animation: "scrollLine 2.5s ease-in-out infinite" }}
+          />
         </div>
       </div>
+
     </section>
   )
 }
